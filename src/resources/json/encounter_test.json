@@ -1,0 +1,511 @@
+{
+  "uid": "fc645685-b449-480f-a595-226a2e484386",
+  "concept": "EncounterTest",
+  "templateId": "EncounterTest",
+  "language": "en",
+  "sections": [
+    {
+      "header": "Encounter",
+      "controls": [],
+      "sections": [
+        {
+          "header": "Blood pressure",
+          "controls": [
+            {
+              "id": "e52db59d-efb0-48b6-90fe-8387d28a4955",
+              "path": "[openEHR-EHR-OBSERVATION.blood_pressure.v2]/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value",
+              "rmTypeName": "DV_QUANTITY",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Systolic",
+              "description": "Peak systemic arterial blood pressure - measured in systolic or contraction\n                        phase of the heart cycle.",
+              "orderInParent": 0,
+              "termDefinition": {
+                "text": "Systolic",
+                "description": "Peak systemic arterial blood pressure - measured in systolic or contraction\n                        phase of the heart cycle.",
+                "comment": ""
+              },
+              "type": "QUANTITY",
+              "quantityItems": [
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": false,
+                    "lower_unbounded": false,
+                    "upper_unbounded": false,
+                    "lower": 0.0,
+                    "upper": 1000.0
+                  },
+                  "units": "mm[Hg]"
+                }
+              ]
+            },
+            {
+              "id": "e92c2d1e-b0fc-41ec-b9b3-5dc3c379e090",
+              "path": "[openEHR-EHR-OBSERVATION.blood_pressure.v2]/data[at0001]/events[at0006]/data[at0003]/items[at0005]/value",
+              "rmTypeName": "DV_QUANTITY",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Diastolic",
+              "description": "Minimum systemic arterial blood pressure - measured in the diastolic or\n                        relaxation phase of the heart cycle.",
+              "orderInParent": 1,
+              "termDefinition": {
+                "text": "Diastolic",
+                "description": "Minimum systemic arterial blood pressure - measured in the diastolic or\n                        relaxation phase of the heart cycle.",
+                "comment": ""
+              },
+              "type": "QUANTITY",
+              "quantityItems": [
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": false,
+                    "lower_unbounded": false,
+                    "upper_unbounded": false,
+                    "lower": 0.0,
+                    "upper": 1000.0
+                  },
+                  "units": "mm[Hg]"
+                }
+              ]
+            },
+            {
+              "id": "8340446d-43b4-4671-952f-f19d5a58dfa7",
+              "path": "[openEHR-EHR-OBSERVATION.blood_pressure.v2]/data[at0001]/events[at0006]/data[at0003]/items[at1007]/value",
+              "rmTypeName": "DV_QUANTITY",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Pulse pressure",
+              "description": "The difference between the systolic and diastolic pressure.",
+              "orderInParent": 2,
+              "termDefinition": {
+                "text": "Pulse pressure",
+                "description": "The difference between the systolic and diastolic pressure.",
+                "comment": ""
+              },
+              "type": "QUANTITY",
+              "quantityItems": [
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": false,
+                    "lower_unbounded": false,
+                    "upper_unbounded": false,
+                    "lower": 0.0,
+                    "upper": 1000.0
+                  },
+                  "units": "mm[Hg]"
+                }
+              ]
+            },
+            {
+              "id": "ebbc69c2-d011-4796-9359-9ef115634bef",
+              "path": "[openEHR-EHR-OBSERVATION.blood_pressure.v2]/data[at0001]/events[at0006]/data[at0003]/items[at1059]/value",
+              "rmTypeName": "DV_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Clinical interpretation",
+              "description": "Single word, phrase or brief description that represents the clinical\n                        meaning and significance of the blood pressure measurement.",
+              "orderInParent": 3,
+              "termDefinition": {
+                "text": "Clinical interpretation",
+                "description": "Single word, phrase or brief description that represents the clinical\n                        meaning and significance of the blood pressure measurement.",
+                "comment": ""
+              },
+              "type": "FREE_TEXT"
+            },
+            {
+              "id": "fba4fc5d-2d43-45b2-91cc-9a51d39726ae",
+              "path": "[openEHR-EHR-OBSERVATION.blood_pressure.v2]/data[at0001]/events[at0006]/data[at0003]/items[at0033]/value",
+              "rmTypeName": "DV_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Comment",
+              "description": "Additional narrative about the measurement, not captured in other fields.",
+              "orderInParent": 4,
+              "termDefinition": {
+                "text": "Comment",
+                "description": "Additional narrative about the measurement, not captured in other fields.",
+                "comment": ""
+              },
+              "type": "FREE_TEXT"
+            }
+          ],
+          "sections": [],
+          "occurrences": {
+            "lower_included": true,
+            "upper_included": false,
+            "lower_unbounded": false,
+            "upper_unbounded": true,
+            "lower": 0,
+            "upper": 0
+          },
+          "termDefinitions": {
+            "at0000": {
+              "text": "Blood pressure",
+              "description": "The local measurement of arterial blood pressure which is a surrogate for\n                        arterial pressure in the systemic circulation.",
+              "comment": "Most commonly, use of the term \u0027blood pressure\u0027 refers to measurement of\n                        brachial artery pressure in the upper arm."
+            },
+            "at0001": {
+              "text": "History",
+              "description": "History Structural node.",
+              "comment": ""
+            },
+            "at0003": {
+              "text": "blood pressure",
+              "description": "@ internal @",
+              "comment": ""
+            },
+            "at0004": {
+              "text": "Systolic",
+              "description": "Peak systemic arterial blood pressure - measured in systolic or contraction\n                        phase of the heart cycle.",
+              "comment": ""
+            },
+            "at0005": {
+              "text": "Diastolic",
+              "description": "Minimum systemic arterial blood pressure - measured in the diastolic or\n                        relaxation phase of the heart cycle.",
+              "comment": ""
+            },
+            "at0006": {
+              "text": "Any event",
+              "description": "Default, unspecified point in time or interval event which may be explicitly\n                        defined in a template or at run-time.",
+              "comment": ""
+            },
+            "at0007": {
+              "text": "state structure",
+              "description": "@ internal @",
+              "comment": ""
+            },
+            "at0008": {
+              "text": "Position",
+              "description": "The position of the individual at the time of measurement.",
+              "comment": ""
+            },
+            "at0011": {
+              "text": "Tree",
+              "description": "List structure.",
+              "comment": ""
+            },
+            "at0013": {
+              "text": "Cuff size",
+              "description": "The size of the cuff used for blood pressure measurement.",
+              "comment": "Perloff D, Grim C, Flack J, Frohlich ED, Hill M, McDonald M, Morgenstern BZ.\n                        Human blood pressure determination by sphygmomanometry. Circulation 1993;88;2460-2470."
+            },
+            "at0014": {
+              "text": "Location of measurement",
+              "description": "Simple body site where blood pressure was measured.",
+              "comment": ""
+            },
+            "at0015": {
+              "text": "Adult Thigh",
+              "description": "A cuff used for an adult thigh.",
+              "comment": ""
+            },
+            "at0016": {
+              "text": "Large Adult",
+              "description": "A cuff for adults with larger arms.",
+              "comment": ""
+            },
+            "at0017": {
+              "text": "Adult",
+              "description": "A cuff that is standard for an adult.",
+              "comment": ""
+            },
+            "at0025": {
+              "text": "Right arm",
+              "description": "The right arm of the person.",
+              "comment": ""
+            },
+            "at0026": {
+              "text": "Left arm",
+              "description": "The left arm of the person.",
+              "comment": ""
+            },
+            "at0027": {
+              "text": "Right thigh",
+              "description": "The right thigh of the person.",
+              "comment": ""
+            },
+            "at0028": {
+              "text": "Left thigh",
+              "description": "The left thigh of the person.",
+              "comment": ""
+            },
+            "at0033": {
+              "text": "Comment",
+              "description": "Additional narrative about the measurement, not captured in other fields.",
+              "comment": ""
+            },
+            "at1000": {
+              "text": "Standing",
+              "description": "Standing at the time of blood pressure measurement.",
+              "comment": ""
+            },
+            "at1001": {
+              "text": "Sitting",
+              "description": "Sitting (for example on bed or chair) at the time of blood pressure\n                        measurement.",
+              "comment": ""
+            },
+            "at1002": {
+              "text": "Reclining",
+              "description": "Reclining at the time of blood pressure measurement.",
+              "comment": ""
+            },
+            "at1003": {
+              "text": "Lying",
+              "description": "Lying flat at the time of blood pressure measurement.",
+              "comment": ""
+            },
+            "at1005": {
+              "text": "Tilt",
+              "description": "The craniocaudal tilt of the surface on which the person is lying at the\n                        time of measurement.",
+              "comment": ""
+            },
+            "at1006": {
+              "text": "Mean arterial pressure",
+              "description": "The average arterial pressure that occurs over the entire course of the\n                        heart contraction and relaxation cycle.",
+              "comment": ""
+            },
+            "at1007": {
+              "text": "Pulse pressure",
+              "description": "The difference between the systolic and diastolic pressure.",
+              "comment": ""
+            },
+            "at1008": {
+              "text": "Small Adult",
+              "description": "A cuff used for a small adult.",
+              "comment": ""
+            },
+            "at1009": {
+              "text": "Paediatric/Child",
+              "description": "A cuff that is appropriate for a child or adult with a thin arm.",
+              "comment": ""
+            },
+            "at1010": {
+              "text": "Diastolic endpoint",
+              "description": "Record which Korotkoff sound is used for determining diastolic pressure\n                        using auscultative method.",
+              "comment": ""
+            },
+            "at1011": {
+              "text": "Phase IV",
+              "description": "The fourth Korotkoff sound is identified as an abrupt muffling of sounds.",
+              "comment": ""
+            },
+            "at1012": {
+              "text": "Phase V",
+              "description": "The fifth Korotkoff sound is identified by absence of sounds as the cuff\n                        pressure drops below the diastolic blood pressure.",
+              "comment": ""
+            },
+            "at1014": {
+              "text": "Lying with tilt to left",
+              "description": "Lying flat with some lateral tilt, usually angled towards the left side.\n                        Commonly required in the last trimester of pregnancy to relieve aortocaval compression.",
+              "comment": ""
+            },
+            "at1018": {
+              "text": "Infant",
+              "description": "A cuff used for infants.",
+              "comment": ""
+            },
+            "at1019": {
+              "text": "Neonatal",
+              "description": "A cuff used for a neonate, assuming cuff is the appropriate size for\n                        maturity and birthweight of the neonate.",
+              "comment": ""
+            },
+            "at1020": {
+              "text": "Right wrist",
+              "description": "The right wrist of the individual.",
+              "comment": ""
+            },
+            "at1021": {
+              "text": "Left wrist",
+              "description": "The left wrist of the individual.",
+              "comment": ""
+            },
+            "at1025": {
+              "text": "Device",
+              "description": "Details about sphygmomanometer or other device used to measure the blood\n                        pressure.",
+              "comment": ""
+            },
+            "at1026": {
+              "text": "Right ankle",
+              "description": "The right ankle of the individual.",
+              "comment": ""
+            },
+            "at1030": {
+              "text": "Exertion",
+              "description": "Details about physical activity undertaken at the time of blood pressure\n                        measurement.",
+              "comment": ""
+            },
+            "at1031": {
+              "text": "Left ankle",
+              "description": "The left ankle of the individual.",
+              "comment": ""
+            },
+            "at1032": {
+              "text": "Finger",
+              "description": "A finger of the individual.",
+              "comment": ""
+            },
+            "at1035": {
+              "text": "Method",
+              "description": "Method of measurement of blood pressure.",
+              "comment": ""
+            },
+            "at1036": {
+              "text": "Auscultation",
+              "description": "Method of measuring blood pressure externally, using a stethoscope and\n                        Korotkoff sounds.",
+              "comment": ""
+            },
+            "at1037": {
+              "text": "Palpation",
+              "description": "Method of measuring blood pressure externally, using palpation (usually of\n                        the brachial or radial arteries).",
+              "comment": ""
+            },
+            "at1038": {
+              "text": "Mean arterial pressure formula",
+              "description": "Formula used to calculate the Mean Arterial Pressure (if recorded in\n                        data).",
+              "comment": ""
+            },
+            "at1039": {
+              "text": "Machine",
+              "description": "Method of measuring blood pressure externally, using a blood pressure\n                        machine.",
+              "comment": ""
+            },
+            "at1040": {
+              "text": "Invasive",
+              "description": "Method of measuring blood pressure internally ie involving penetration of\n                        the skin and measuring inside blood vessels.",
+              "comment": ""
+            },
+            "at1042": {
+              "text": "24 hour average",
+              "description": "Estimate of the average blood pressure over a 24 hour period.",
+              "comment": ""
+            },
+            "at1043": {
+              "text": "Sleep status",
+              "description": "Sleep status - supports interpretation of 24 hour ambulatory blood pressure\n                        records.",
+              "comment": ""
+            },
+            "at1044": {
+              "text": "Awake",
+              "description": "The individual is fully conscious.",
+              "comment": ""
+            },
+            "at1045": {
+              "text": "Sleeping",
+              "description": "The individual is in the natural state of bodily rest.",
+              "comment": ""
+            },
+            "at1051": {
+              "text": "Toe",
+              "description": "A toe of the individual.",
+              "comment": ""
+            },
+            "at1052": {
+              "text": "Confounding factors",
+              "description": "Comment on and record other incidental factors that may be contributing to\n                        the blood pressure measurement. For example, level of anxiety or \u0027white coat syndrome\u0027; pain or\n                        fever; changes in atmospheric pressure etc.",
+              "comment": ""
+            },
+            "at1053": {
+              "text": "Intra-arterial",
+              "description": "Invasive measurement via transducer access line within an artery.",
+              "comment": ""
+            },
+            "at1054": {
+              "text": "Systolic pressure formula",
+              "description": "Formula used to calculate the systolic pressure from from mean arterial\n                        pressure (if recorded in data).",
+              "comment": ""
+            },
+            "at1055": {
+              "text": "Diastolic pressure formula",
+              "description": "Formula used to calculate the diastolic pressure from mean arterial pressure\n                        (if recorded in data).",
+              "comment": ""
+            },
+            "at1056": {
+              "text": "Dorsum of foot",
+              "description": "The individual\u0027s dorsum of the foot.",
+              "comment": ""
+            },
+            "at1057": {
+              "text": "Structured measurement location",
+              "description": "Structured anatomical location of where the measurement was taken.",
+              "comment": ""
+            },
+            "at1058": {
+              "text": "Extension",
+              "description": "Additional information required to capture local context or to align with\n                        other reference models/formalisms.",
+              "comment": "For example: Local hospital departmental infomation or additional metadata to\n                        align with FHIR or CIMI equivalents."
+            },
+            "at1059": {
+              "text": "Clinical interpretation",
+              "description": "Single word, phrase or brief description that represents the clinical\n                        meaning and significance of the blood pressure measurement.",
+              "comment": ""
+            }
+          },
+          "orderInParent": 0
+        }
+      ],
+      "occurrences": {
+        "lower_included": true,
+        "upper_included": true,
+        "lower_unbounded": false,
+        "upper_unbounded": false,
+        "lower": 1,
+        "upper": 1
+      },
+      "termDefinitions": {
+        "at0000": {
+          "text": "Encounter",
+          "description": "unknown",
+          "comment": ""
+        },
+        "at0001": {
+          "text": "Blood Pressure",
+          "description": "*",
+          "comment": ""
+        }
+      },
+      "orderInParent": 0
+    }
+  ],
+  "viewConstraints": {
+    "[openEHR-EHR-COMPOSITION.encounter_test.v1]/content[openEHR-EHR-OBSERVATION.blood_pressure.v2]/data[at0001]/events[at0006]/state[at0007]": {
+      "id": "pass_through",
+      "value": "true"
+    },
+    "[openEHR-EHR-COMPOSITION.encounter_test.v1]/content[openEHR-EHR-OBSERVATION.blood_pressure.v2]/protocol[at0011]": {
+      "id": "pass_through",
+      "value": "true"
+    }
+  }
+}

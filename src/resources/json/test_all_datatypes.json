@@ -1,0 +1,659 @@
+{
+  "uid": "210b5699-4efb-4238-9156-688322b5f86c",
+  "concept": "Test all datatypes_en",
+  "templateId": "test_all_types.en.v1",
+  "language": "es",
+  "sections": [
+    {
+      "header": "Test all datatypes",
+      "controls": [],
+      "sections": [
+        {
+          "header": "Test datatypes",
+          "controls": [
+            {
+              "id": "fd4f30a4-e66c-41f5-8e9b-1afefb0a554c",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value",
+              "rmTypeName": "DV_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Free text",
+              "description": "*",
+              "orderInParent": 0,
+              "termDefinition": {
+                "text": "Free text",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "FREE_TEXT"
+            },
+            {
+              "id": "ef6cd929-a2d8-4017-ac89-1580e63f2ed6",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value",
+              "rmTypeName": "DV_CODED_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Coded text",
+              "description": "*",
+              "orderInParent": 1,
+              "termDefinition": {
+                "text": "Coded text",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "INTERNAL_CODED_TEXT",
+              "codeList": [
+                "a",
+                "b",
+                "c"
+              ]
+            },
+            {
+              "id": "3b356f60-3d8f-43ab-96fe-bf25d07ded64",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0006]/value",
+              "rmTypeName": "DV_CODED_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Constrained text",
+              "description": "*",
+              "orderInParent": 2,
+              "termDefinition": {
+                "text": "Constrained text",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "c280f9a2-c536-45dd-a927-d13e7c750f43",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value",
+              "rmTypeName": "DV_QUANTITY",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Quantity",
+              "description": "*",
+              "orderInParent": 3,
+              "termDefinition": {
+                "text": "Quantity",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "QUANTITY",
+              "quantityItems": [
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": true,
+                    "lower_unbounded": false,
+                    "upper_unbounded": false,
+                    "lower": 0.0,
+                    "upper": 40.0
+                  },
+                  "units": "°C"
+                },
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": true,
+                    "lower_unbounded": false,
+                    "upper_unbounded": false,
+                    "lower": 0.0,
+                    "upper": 100.0
+                  },
+                  "units": "°F"
+                }
+              ]
+            },
+            {
+              "id": "6c491d1e-7b68-49a9-abb8-0171ad9c6bd4",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value",
+              "rmTypeName": "DV_COUNT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Count",
+              "description": "*",
+              "orderInParent": 4,
+              "termDefinition": {
+                "text": "Count",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "COUNT"
+            },
+            {
+              "id": "11ffff46-df0b-467e-9363-785f8bc0415d",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0012]/value",
+              "rmTypeName": "DV_DATE_TIME",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Datetime",
+              "description": "*",
+              "orderInParent": 5,
+              "termDefinition": {
+                "text": "Datetime",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "DATETIME"
+            },
+            {
+              "id": "147757bc-a06b-43e1-ab2a-be7fd9bc2c64",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0013]/value",
+              "rmTypeName": "DV_ORDINAL",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Ordinal",
+              "description": "*",
+              "orderInParent": 6,
+              "termDefinition": {
+                "text": "Ordinal",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "ORDINAL",
+              "ordinalList": [
+                {
+                  "ordinalValue": 1,
+                  "terminologyId": "local",
+                  "text": "aa",
+                  "code": "at0014"
+                },
+                {
+                  "ordinalValue": 2,
+                  "terminologyId": "local",
+                  "text": "bb",
+                  "code": "at0015"
+                },
+                {
+                  "ordinalValue": 3,
+                  "terminologyId": "local",
+                  "text": "cc",
+                  "code": "at0016"
+                }
+              ]
+            },
+            {
+              "id": "0d424775-122c-410b-a7f3-7076b73f95f0",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0017]/value",
+              "rmTypeName": "DV_BOOLEAN",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Boolean",
+              "description": "*",
+              "orderInParent": 7,
+              "termDefinition": {
+                "text": "Boolean",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "BOOLEAN_CHECK"
+            },
+            {
+              "id": "e26bb7e6-3cb5-46be-afd9-85a998d2b6f1",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0018]/value",
+              "rmTypeName": "DV_DURATION",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Duration",
+              "description": "*",
+              "orderInParent": 8,
+              "termDefinition": {
+                "text": "Duration",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "DURATION"
+            },
+            {
+              "id": "1c350f1b-9ddb-4fe1-b948-3e8c2e29d052",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0019]/value",
+              "rmTypeName": "DV_INTERVAL\u003cDV_COUNT\u003e",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Integer interval",
+              "description": "*",
+              "orderInParent": 9,
+              "termDefinition": {
+                "text": "Integer interval",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "21f52f6f-3ceb-43ae-828c-838b6f482974",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0020]/value",
+              "rmTypeName": "DV_INTERVAL\u003cDV_QUANTITY\u003e",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Quanitty interval",
+              "description": "*",
+              "orderInParent": 10,
+              "termDefinition": {
+                "text": "Quanitty interval",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "6bf17147-2ce5-4c8f-a975-b020c1ba0997",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0021]/value",
+              "rmTypeName": "DV_INTERVAL\u003cDV_DATE_TIME\u003e",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Datetime interval",
+              "description": "*",
+              "orderInParent": 11,
+              "termDefinition": {
+                "text": "Datetime interval",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "8a433dd3-d269-4319-ae15-4b8496f2f798",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0022]/value",
+              "rmTypeName": "DV_MULTIMEDIA",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Multimedia",
+              "description": "*",
+              "orderInParent": 12,
+              "termDefinition": {
+                "text": "Multimedia",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "ade3d659-1a93-4043-948e-5824c8382f1c",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0023]/value",
+              "rmTypeName": "DV_EHR_URI",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "EHR_URI",
+              "description": "*",
+              "orderInParent": 13,
+              "termDefinition": {
+                "text": "EHR_URI",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "d9d7429c-cace-4ca9-9431-bfa1cf488c38",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0027]/value",
+              "rmTypeName": "DV_URI",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "URI",
+              "description": "*",
+              "orderInParent": 14,
+              "termDefinition": {
+                "text": "URI",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "a571ec3b-8d8c-4897-a76a-22e772e54e3a",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0024]/value",
+              "rmTypeName": "DV_PROPORTION",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Proportion",
+              "description": "*",
+              "orderInParent": 15,
+              "termDefinition": {
+                "text": "Proportion",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "29468c61-dbb4-48ef-81eb-fa529efc5499",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0025]/value",
+              "rmTypeName": "DV_IDENTIFIER",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Identifier",
+              "description": "*",
+              "orderInParent": 16,
+              "termDefinition": {
+                "text": "Identifier",
+                "description": "*",
+                "comment": ""
+              }
+            },
+            {
+              "id": "83332edd-8e22-4ca8-b057-27b5bbf1d476",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0026]/value",
+              "rmTypeName": "DV_PARSABLE",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Parsable",
+              "description": "*",
+              "orderInParent": 17,
+              "termDefinition": {
+                "text": "Parsable",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "PARSABLE",
+              "formalism": [
+                "text/xml"
+              ]
+            },
+            {
+              "id": "ebf4f2e4-b7e6-40ca-8c95-fc8a1bf4bb84",
+              "path": "[openEHR-EHR-OBSERVATION.test_all_datatypes.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0028]/value",
+              "rmTypeName": "DV_DATE",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Date",
+              "description": "*",
+              "orderInParent": 18,
+              "termDefinition": {
+                "text": "Date",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "DATE"
+            }
+          ],
+          "sections": [],
+          "occurrences": {
+            "lower_included": true,
+            "upper_included": false,
+            "lower_unbounded": false,
+            "upper_unbounded": true,
+            "lower": 0,
+            "upper": 0
+          },
+          "termDefinitions": {
+            "at0000": {
+              "text": "Test all datatypes",
+              "description": "unknown",
+              "comment": ""
+            },
+            "at0001": {
+              "text": "Event Series",
+              "description": "@ internal @",
+              "comment": ""
+            },
+            "at0002": {
+              "text": "Cualquier evento",
+              "description": "*",
+              "comment": ""
+            },
+            "at0003": {
+              "text": "Arbol",
+              "description": "@ internal @",
+              "comment": ""
+            },
+            "at0004": {
+              "text": "Free text",
+              "description": "*",
+              "comment": ""
+            },
+            "at0005": {
+              "text": "Coded text",
+              "description": "*",
+              "comment": ""
+            },
+            "at0006": {
+              "text": "Constrained text",
+              "description": "*",
+              "comment": ""
+            },
+            "at0007": {
+              "text": "a",
+              "description": "a",
+              "comment": ""
+            },
+            "at0008": {
+              "text": "b",
+              "description": "b",
+              "comment": ""
+            },
+            "at0009": {
+              "text": "c",
+              "description": "c",
+              "comment": ""
+            },
+            "at0010": {
+              "text": "Quantity",
+              "description": "*",
+              "comment": ""
+            },
+            "at0011": {
+              "text": "Count",
+              "description": "*",
+              "comment": ""
+            },
+            "at0012": {
+              "text": "Datetime",
+              "description": "*",
+              "comment": ""
+            },
+            "at0013": {
+              "text": "Ordinal",
+              "description": "*",
+              "comment": ""
+            },
+            "at0014": {
+              "text": "aa",
+              "description": "aa",
+              "comment": ""
+            },
+            "at0015": {
+              "text": "bb",
+              "description": "bb",
+              "comment": ""
+            },
+            "at0016": {
+              "text": "cc",
+              "description": "cc",
+              "comment": ""
+            },
+            "at0017": {
+              "text": "Boolean",
+              "description": "*",
+              "comment": ""
+            },
+            "at0018": {
+              "text": "Duration",
+              "description": "*",
+              "comment": ""
+            },
+            "at0019": {
+              "text": "Integer interval",
+              "description": "*",
+              "comment": ""
+            },
+            "at0020": {
+              "text": "Quanitty interval",
+              "description": "*",
+              "comment": ""
+            },
+            "at0021": {
+              "text": "Datetime interval",
+              "description": "*",
+              "comment": ""
+            },
+            "at0022": {
+              "text": "Multimedia",
+              "description": "*",
+              "comment": ""
+            },
+            "at0023": {
+              "text": "EHR_URI",
+              "description": "*",
+              "comment": ""
+            },
+            "at0024": {
+              "text": "Proportion",
+              "description": "*",
+              "comment": ""
+            },
+            "at0025": {
+              "text": "Identifier",
+              "description": "*",
+              "comment": ""
+            },
+            "at0026": {
+              "text": "Parsable",
+              "description": "*",
+              "comment": ""
+            },
+            "at0027": {
+              "text": "URI",
+              "description": "*",
+              "comment": ""
+            },
+            "at0028": {
+              "text": "Date",
+              "description": "*",
+              "comment": ""
+            }
+          },
+          "orderInParent": 0
+        }
+      ],
+      "occurrences": {
+        "lower_included": true,
+        "upper_included": true,
+        "lower_unbounded": false,
+        "upper_unbounded": false,
+        "lower": 1,
+        "upper": 1
+      },
+      "termDefinitions": {
+        "at0000": {
+          "text": "Test all datatypes",
+          "description": "composition root",
+          "comment": ""
+        },
+        "at0001": {
+          "text": "All datatypes observation",
+          "description": "obervation slot",
+          "comment": ""
+        }
+      },
+      "orderInParent": 0
+    }
+  ],
+  "viewConstraints": {}
+}

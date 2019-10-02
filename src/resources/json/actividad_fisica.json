@@ -1,0 +1,224 @@
+{
+  "uid": "b10e6338-ae82-40c1-a09e-01c2f04195a5",
+  "concept": "Physical Activity Document",
+  "templateId": "physical_activity_document.en.v1",
+  "language": "en",
+  "sections": [
+    {
+      "header": "Physical activity document",
+      "controls": [],
+      "sections": [
+        {
+          "header": "Physical activity",
+          "controls": [
+            {
+              "id": "1fc26fd1-327a-4b29-8709-c9525db84a70",
+              "path": "[openEHR-EHR-OBSERVATION.physical_activity.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value",
+              "rmTypeName": "DV_CODED_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Type of activity",
+              "description": "*",
+              "orderInParent": 0,
+              "termDefinition": {
+                "text": "Type of activity",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "INTERNAL_CODED_TEXT",
+              "codeList": [
+                "running",
+                "walking",
+                "swimming",
+                "skating"
+              ]
+            },
+            {
+              "id": "29fb78d1-7f65-4171-8cdc-0f59849db9ac",
+              "path": "[openEHR-EHR-OBSERVATION.physical_activity.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value",
+              "rmTypeName": "DV_QUANTITY",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Duration",
+              "description": "*",
+              "orderInParent": 1,
+              "termDefinition": {
+                "text": "Duration",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "QUANTITY",
+              "quantityItems": [
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": false,
+                    "lower_unbounded": false,
+                    "upper_unbounded": true,
+                    "lower": 0.0,
+                    "upper": 0.0
+                  },
+                  "units": "min"
+                },
+                {
+                  "magnitude": {
+                    "lower_included": true,
+                    "upper_included": false,
+                    "lower_unbounded": false,
+                    "upper_unbounded": true,
+                    "lower": 0.0,
+                    "upper": 0.0
+                  },
+                  "units": "h"
+                }
+              ]
+            },
+            {
+              "id": "6fa37c05-5aa3-42bf-aa67-a92a6c7f95ef",
+              "path": "[openEHR-EHR-OBSERVATION.physical_activity.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value",
+              "rmTypeName": "DV_CODED_TEXT",
+              "occurrences": {
+                "lower_included": true,
+                "upper_included": true,
+                "lower_unbounded": false,
+                "upper_unbounded": false,
+                "lower": 1,
+                "upper": 1
+              },
+              "label": "Intensity",
+              "description": "*",
+              "orderInParent": 2,
+              "termDefinition": {
+                "text": "Intensity",
+                "description": "*",
+                "comment": ""
+              },
+              "type": "INTERNAL_CODED_TEXT",
+              "codeList": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          ],
+          "sections": [],
+          "occurrences": {
+            "lower_included": true,
+            "upper_included": false,
+            "lower_unbounded": false,
+            "upper_unbounded": true,
+            "lower": 0,
+            "upper": 0
+          },
+          "termDefinitions": {
+            "at0000": {
+              "text": "Physical activity",
+              "description": "unknown",
+              "comment": ""
+            },
+            "at0001": {
+              "text": "Event Series",
+              "description": "@ internal @",
+              "comment": ""
+            },
+            "at0002": {
+              "text": "Any event",
+              "description": "*",
+              "comment": ""
+            },
+            "at0003": {
+              "text": "Tree",
+              "description": "@ internal @",
+              "comment": ""
+            },
+            "at0004": {
+              "text": "Type of activity",
+              "description": "*",
+              "comment": ""
+            },
+            "at0005": {
+              "text": "running",
+              "description": "*",
+              "comment": ""
+            },
+            "at0006": {
+              "text": "walking",
+              "description": "*",
+              "comment": ""
+            },
+            "at0007": {
+              "text": "swimming",
+              "description": "*",
+              "comment": ""
+            },
+            "at0008": {
+              "text": "skating",
+              "description": "*",
+              "comment": ""
+            },
+            "at0009": {
+              "text": "Duration",
+              "description": "*",
+              "comment": ""
+            },
+            "at0010": {
+              "text": "Intensity",
+              "description": "*",
+              "comment": ""
+            },
+            "at0011": {
+              "text": "low",
+              "description": "*",
+              "comment": ""
+            },
+            "at0012": {
+              "text": "medium",
+              "description": "*",
+              "comment": ""
+            },
+            "at0013": {
+              "text": "high",
+              "description": "*",
+              "comment": ""
+            }
+          },
+          "orderInParent": 0
+        }
+      ],
+      "occurrences": {
+        "lower_included": true,
+        "upper_included": true,
+        "lower_unbounded": false,
+        "upper_unbounded": false,
+        "lower": 1,
+        "upper": 1
+      },
+      "termDefinitions": {
+        "at0000": {
+          "text": "Physical activity document",
+          "description": "unknown",
+          "comment": ""
+        },
+        "at0001": {
+          "text": "Physical Activity",
+          "description": "*",
+          "comment": ""
+        }
+      },
+      "orderInParent": 0
+    }
+  ],
+  "viewConstraints": {}
+}
