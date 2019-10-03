@@ -6,7 +6,7 @@ const UITemplate = (props) => {
     return (
         <div className={"mt-3"}>
             {props.template.sections.map((section) => <Section key={section.header + section.orderInParent}
-                                                               section={section} translate={props.translate}/>)}
+                                                               section={section} translate={props.translate} isDynamic={false}/>)}
         </div>
     )
 };

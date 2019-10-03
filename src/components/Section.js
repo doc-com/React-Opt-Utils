@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Control from "./Control";
 
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import DynamicComponent from "./DynamicComponent";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const renderContent = (section, translate) => {
 
@@ -23,7 +25,8 @@ const renderContent = (section, translate) => {
     contentArray.sort((item1, item2) => {
         if (item1.orderInParent > item2.orderInParent) return 1;
         if (item1.orderInParent < item2.orderInParent) return -1;
-        if (item1.orderInParent === item2.orderInParent) return 0
+        if (item1.orderInParent === item2.orderInParent) return 0;
+        return -2
     });
 
     return contentArray.map((item) => {
@@ -34,7 +37,8 @@ const renderContent = (section, translate) => {
                                          translate={translate}/>
             }
             return <Section section={item} key={item.header + item.orderInParent}
-                            translate={translate}/>
+                            translate={translate}
+                            isDynamic={false}/>
         }
 
         if (item.itemType === "control") {
@@ -43,8 +47,11 @@ const renderContent = (section, translate) => {
                                          translate={translate}/>
             }
             return <Control control={item} key={item.id}
-                            translate={translate}/>
+                            translate={translate}
+                            isDynamic={false}/>
         }
+
+        return ''
     })
 
 };
@@ -54,7 +61,19 @@ const Section = (props) => {
         <Accordion>
             <Card>
                 <Accordion.Toggle as={Card.Header} variant="primary" eventKey="0">
-                    {props.section.header}
+                    <Row>
+                        <Col md={"auto"}>
+                            {props.section.header}
+                        </Col>
+                        {props.isDynamic ?
+                            <Col>
+                                <i className="fas fa-trash" onClick={(e) => {
+                                    e.preventDefault();
+                                    props.deleteContentItem(props.dynamicIndex)
+                                }}/>
+                            </Col>
+                            : ''}
+                    </Row>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>{renderContent(props.section, props.translate)}</Card.Body>
@@ -65,6 +84,9 @@ const Section = (props) => {
 };
 
 Section.propTypes = {
+    isDynamic: PropTypes.bool.isRequired,
+    dynamicIndex: PropTypes.number,
+    deleteContentItem: PropTypes.func,
     section: PropTypes.shape({
         header: PropTypes.string.isRequired,
         controls: PropTypes.arrayOf(PropTypes.any),

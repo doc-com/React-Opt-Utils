@@ -3,7 +3,8 @@ import './App.css';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import Home from "./components/Home";
 import OptToHtml from "./components/OptToHtml";
-import {Button, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
     constructor(props) {

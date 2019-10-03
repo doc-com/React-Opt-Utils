@@ -1,13 +1,13 @@
 import React from 'react';
 import UITemplate from "./UITemplate";
-import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
 import request from "request";
 
 const fetchJsonTemplate = (opt, callback) => {
     let options = {
-        url: 'http://opt-meta-ui-dev-alb-1758865666.us-east-1.elb.amazonaws.com/opt/meta',
+        url: 'https://opt-meta-ui-dev.doc.com/opt/meta',
         method: 'POST',
         headers: {
             'Content-Type': 'application/xml'

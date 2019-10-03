@@ -20,6 +20,9 @@ const Control = (props) => {
 };
 
 Control.propTypes = {
+    isDynamic: PropTypes.bool.isRequired,
+    dynamicIndex: PropTypes.number,
+    deleteContentItem: PropTypes.func,
     control: PropTypes.shape({
         id: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
