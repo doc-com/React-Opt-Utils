@@ -16,11 +16,12 @@ class DynamicComponent extends Component {
 
     addContentItem() {
         let entry;
+        let dynamicId = uuid.v1();
         if (this.props.content.itemType === "section") {
             entry = <Section section={this.props.content}
-                             key={this.props.content.header + this.props.content.orderInParent + "" + uuid.v1()}
+                             key={this.props.content.header + this.props.content.orderInParent + "" + dynamicId}
                              translate={this.props.translate} isDynamic={true}
-                             dynamicIndex={this.state.contentArray.length}
+                             dynamicId={dynamicId}
                              deleteContentItem={(index) => {
                                  this.deleteContentItem(index)
                              }}/>
@@ -28,8 +29,8 @@ class DynamicComponent extends Component {
 
         if (this.props.content.itemType === "control") {
             entry =
-                <Control control={this.props.content} key={this.props.content.id + "" + uuid.v1()}
-                         translate={this.props.translate} isDynamic={true} dynamicIndex={this.state.contentArray.length}
+                <Control control={this.props.content} key={this.props.content.id + "" + dynamicId}
+                         translate={this.props.translate} isDynamic={true} dynamicId={dynamicId}
                          deleteContentItem={(index) => {
                              this.deleteContentItem(index)
                          }}/>
@@ -41,21 +42,16 @@ class DynamicComponent extends Component {
         })
     }
 
-    deleteContentItem(index) {
-        console.log(index);
-        if (index === 0 && this.state.contentArray) {
-            let newArray = [...this.state.contentArray];
-            newArray.shift();
-            this.setState({contentArray: newArray}, () => {
-                console.log(this.state)
-            });
-        } else {
-            let newArray = [...this.state.contentArray];
-            newArray.splice(index, 1);
-            this.setState({contentArray: newArray}, () => {
-                console.log(this.state)
-            })
-        }
+    deleteContentItem(dynamicId) {
+        console.log(dynamicId);
+        let newArray = [...this.state.contentArray];
+        let item = newArray.find((item) => {
+            return item.dynamicId === dynamicId
+        });
+        newArray.splice(newArray.indexOf(item), 1);
+        this.setState({contentArray: newArray}, () => {
+            console.log(this.state)
+        })
     }
 
     render() {

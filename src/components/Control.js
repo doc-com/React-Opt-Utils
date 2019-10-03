@@ -21,7 +21,7 @@ const Control = (props) => {
 
 Control.propTypes = {
     isDynamic: PropTypes.bool.isRequired,
-    dynamicIndex: PropTypes.number,
+    dynamicId: PropTypes.number,
     deleteContentItem: PropTypes.func,
     control: PropTypes.shape({
         id: PropTypes.string.isRequired,

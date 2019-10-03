@@ -85,7 +85,7 @@ const Section = (props) => {
 
 Section.propTypes = {
     isDynamic: PropTypes.bool.isRequired,
-    dynamicIndex: PropTypes.number,
+    dynamicId: PropTypes.string,
     deleteContentItem: PropTypes.func,
     section: PropTypes.shape({
         header: PropTypes.string.isRequired,
