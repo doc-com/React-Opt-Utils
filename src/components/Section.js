@@ -7,6 +7,7 @@ import Accordion from "react-bootstrap/Accordion";
 import DynamicComponent from "./DynamicComponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 const renderContent = (section, translate) => {
 
@@ -50,7 +51,6 @@ const renderContent = (section, translate) => {
                             translate={translate}
                             isDynamic={false}/>
         }
-
         return ''
     })
 
@@ -59,22 +59,22 @@ const renderContent = (section, translate) => {
 const Section = (props) => {
     return (
         <Accordion>
-            <Card>
-                <Accordion.Toggle as={Card.Header} variant="primary" eventKey="0">
-                    <Row>
+            <Card className={props.section.sections.length <= 1 ? "only-child" : ''}>
+                <Card.Header>
+                    <Row className={"align-items-center"}>
                         <Col md={"auto"}>
-                            {props.section.header}
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                {props.section.header}
+                            </Accordion.Toggle>
                         </Col>
                         {props.isDynamic ?
-                            <Col>
-                                <i className="fas fa-trash" onClick={(e) => {
-                                    e.preventDefault();
-                                    props.deleteContentItem(props.dynamicIndex)
-                                }}/>
-                            </Col>
+                            <i className="fas fa-trash" onClick={(e) => {
+                                e.preventDefault();
+                                props.deleteContentItem(props.dynamicIndex)
+                            }}/>
                             : ''}
                     </Row>
-                </Accordion.Toggle>
+                </Card.Header>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>{renderContent(props.section, props.translate)}</Card.Body>
                 </Accordion.Collapse>

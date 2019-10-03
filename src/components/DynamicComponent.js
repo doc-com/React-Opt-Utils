@@ -64,6 +64,7 @@ class DynamicComponent extends Component {
                         </Col>
                         <Col md={"auto"}>
                             <Button variant="success" onClick={(event) => {
+                                event.preventDefault()
                                 this.addContentItem()
                             }}>+</Button>
                         </Col>
