@@ -1,6 +1,5 @@
 import React from 'react';
 import UITemplate from "./UITemplate";
-import {getJsonTemplate} from "../util/getJsonTemplate";
 import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
 import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
@@ -32,7 +31,6 @@ const handleFile = (file, callback) => {
 };
 
 const OptToHtml = (props) => {
-    let uiOpt = '';
     return (
         <Container className="mt-3">
             <Formik
@@ -41,16 +39,18 @@ const OptToHtml = (props) => {
                         handleFile(values.optFile, (err, content) => {
                             if (!err) {
                                 fetchJsonTemplate(content, (error, response, body) => {
-                                    console.log(response)
+                                    if (err) {
+                                        console.error(error);
+                                    } else {
+                                        props.setJsonTemplate(response);
+                                    }
                                 });
-                                //uiOpt = <UITemplate template={content} translate={() => {
-                                //}}/>
                             } else {
                                 console.error(err);
                             }
                         });
                     } else {
-                        uiOpt = ''
+                        console.error("File is null");
                     }
                 }}
                 render={({errors, status, touched, isSubmitting}) => (
@@ -64,15 +64,14 @@ const OptToHtml = (props) => {
                             </Col>
                             <Col className={"col-md-3"}>
                                 <div className="d-flex justify-content-end">
-                                    <Button type={"submit"} variant="success" onClick={(event) => {
-
-                                    }}>Generar Formulario</Button>
+                                    <Button type={"submit"} variant="success">Generar Formulario</Button>
                                 </div>
                             </Col>
                         </Row>
                     </Form>
                 )}/>
-            {uiOpt}
+            {props.template ? <UITemplate template={props.template} translate={() => {
+            }}/> : ''}
         </Container>
     )
 };
