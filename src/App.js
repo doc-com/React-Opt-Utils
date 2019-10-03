@@ -10,7 +10,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jsonTemplate: ''
+            jsonTemplate: '',
+            fetchingJsonTemplate: false
         }
     }
 
@@ -29,12 +30,11 @@ class App extends Component {
                     </Navbar>
                     <Switch>
                         <Route path="/optToHtml">
-                            <OptToHtml template={this.state.jsonTemplate} setJsonTemplate={(template) => {
-                                this.setState({jsonTemplate: template}, () => {
-                                    console.log("New state");
-                                    console.log(this.state)
-                                })
-                            }}/>
+                            <OptToHtml template={this.state.jsonTemplate}
+                                       fetchingJsonTemplate={this.state.fetchingJsonTemplate}
+                                       setState={(newState) => {
+                                           this.setState(newState)
+                                       }}/>
                         </Route>
                         <Route path="/">
                             <Home/>

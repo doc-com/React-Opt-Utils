@@ -1,6 +1,6 @@
 import React from 'react';
 import UITemplate from "./UITemplate";
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row, Spinner} from "react-bootstrap";
 import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
 import request from "request";
@@ -38,11 +38,15 @@ const OptToHtml = (props) => {
                     if (values.optFile) {
                         handleFile(values.optFile, (err, content) => {
                             if (!err) {
+                                props.setState({fetchingJsonTemplate: true});
                                 fetchJsonTemplate(content, (error, response, body) => {
                                     if (err) {
                                         console.error(error);
                                     } else {
-                                        props.setJsonTemplate(JSON.parse(response.body));
+                                        props.setState({
+                                            fetchingJsonTemplate: false,
+                                            jsonTemplate: JSON.parse(response.body)
+                                        });
                                     }
                                 });
                             } else {
@@ -70,6 +74,13 @@ const OptToHtml = (props) => {
                         </Row>
                     </Form>
                 )}/>
+            {props.fetchingJsonTemplate ?
+                <Row className={"mt-3 justify-content-center"}>
+                    <Spinner animation="border" role="status">
+                        <span className="sr-only">Procesando OPT...</span>
+                    </Spinner>
+                </Row>
+                : ''}
             {props.template ? <UITemplate template={props.template} translate={() => {
             }}/> : ''}
         </Container>
