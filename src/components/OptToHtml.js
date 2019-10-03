@@ -42,7 +42,7 @@ const OptToHtml = (props) => {
                                     if (err) {
                                         console.error(error);
                                     } else {
-                                        props.setJsonTemplate(response);
+                                        props.setJsonTemplate(JSON.parse(response.body));
                                     }
                                 });
                             } else {
