@@ -33,14 +33,20 @@ class DynamicComponent extends Component {
         return (
             <Card>
                 <Card.Header>
-                    <p>Agregar {this.props.content.header}</p>
-                    <Button variant="success" onClick={(event) => {
-                        this.setState({contentCount: this.state.contentCount + 1})
-                    }}>+</Button>
+                    <Row className="align-items-center justify-content-start">
+                        <Col md={"auto"}>
+                            Agregar {this.props.content.header}
+                        </Col>
+                        <Col md={"auto"}>
+                            <Button variant="success" onClick={(event) => {
+                                this.setState({contentCount: this.state.contentCount + 1})
+                            }}>+</Button>
+                        </Col>
+                    </Row>
                 </Card.Header>
                 <Card.Body>{contentArray}</Card.Body>
             </Card>
-    )
+        )
     }
 }
 
