@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Field} from "formik";
 
 const renderContent = (control) => {
     //switch () {
@@ -10,16 +11,23 @@ const renderContent = (control) => {
 
 const Control = (props) => {
     return (
-        <div>
-            <label htmlFor={props.control.label}>
-                {props.control.label}
-            </label>
-            {renderContent(props.control)}
-        </div>
+        <Field
+            name={props.control.label}
+            render={({field}) => {
+                return (<div>
+                    <label htmlFor={props.control.label}>
+                        {props.control.label}
+                    </label>
+                    {renderContent(props)}
+                </div>)
+            }}
+        />
+
     )
 };
 
 Control.propTypes = {
+    form: PropTypes.any,
     isDynamic: PropTypes.bool.isRequired,
     dynamicId: PropTypes.number,
     deleteContentItem: PropTypes.func,

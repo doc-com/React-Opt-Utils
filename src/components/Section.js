@@ -84,6 +84,7 @@ const Section = (props) => {
 };
 
 Section.propTypes = {
+    form: PropTypes.any,
     isDynamic: PropTypes.bool.isRequired,
     dynamicId: PropTypes.string,
     deleteContentItem: PropTypes.func,

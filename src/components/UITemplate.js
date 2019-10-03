@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Section from "./Section";
+import {Form, Formik} from "formik";
 
 const UITemplate = (props) => {
     return (
         <div className={"mt-3"}>
-            {props.template.sections.map((section) => <Section key={section.header + section.orderInParent}
-                                                               section={section} translate={props.translate} isDynamic={false}/>)}
+            <Formik
+                onSubmit={(values, actions) => {
+
+                }}
+                render={({handleSubmit, handleChange, handleBlur, values, errors}) =>
+                    (<Form>
+                        {props.template.sections.map((section) =>
+                            <Section form={{handleSubmit, handleChange, handleBlur, values, errors}}
+                                     key={section.header + section.orderInParent}
+                                     section={section} translate={props.translate}
+                                     isDynamic={false}/>)}
+                    </Form>)
+                }/>
         </div>
     )
 };
