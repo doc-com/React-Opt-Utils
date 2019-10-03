@@ -3,5 +3,5 @@ export const getJsonTemplate = (name) => {
 };
 
 export const getOPT = (name) => {
-    return require('../resources/opt/' + name + '.opt')
+    //return require('../resources/opt/' + name + '.opt')
 };
