@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-const renderContent = (section, translate) => {
+const renderContent = (section, translate, path, form) => {
 
     let sectionArray = section.sections.map((section) => {
         section.itemType = "section";
@@ -34,20 +34,28 @@ const renderContent = (section, translate) => {
 
         if (item.itemType === "section") {
             if (item.occurrences.upper_unbounded) {
-                return <DynamicComponent content={item} key={item.header + item.orderInParent}
+                return <DynamicComponent path={`${path}.${item.header}`} content={item}
+                                         form={form}
+                                         key={item.header + item.orderInParent}
                                          translate={translate}/>
             }
-            return <Section section={item} key={item.header + item.orderInParent}
+            return <Section path={`${path}.${item.header}`} section={item}
+                            form={form}
+                            key={item.header + item.orderInParent}
                             translate={translate}
                             isDynamic={false}/>
         }
 
         if (item.itemType === "control") {
             if (item.occurrences.upper_unbounded) {
-                return <DynamicComponent content={item} key={item.id}
+                return <DynamicComponent path={`${path}.${item.id}`} content={item} k
+                                         form={form}
+                                         ey={item.id}
                                          translate={translate}/>
             }
-            return <Control control={item} key={item.id}
+            return <Control path={`${path}.${item.id}`} control={item}
+                            form={form}
+                            key={item.id}
                             translate={translate}
                             isDynamic={false}/>
         }
@@ -70,13 +78,13 @@ const Section = (props) => {
                         {props.isDynamic ?
                             <i className="fas fa-trash" onClick={(e) => {
                                 e.preventDefault();
-                                props.deleteContentItem(props.dynamicIndex)
+                                props.deleteContentItem(props.dynamicId)
                             }}/>
                             : ''}
                     </Row>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
-                    <Card.Body>{renderContent(props.section, props.translate)}</Card.Body>
+                    <Card.Body>{renderContent(props.section, props.translate, props.path, props.form)}</Card.Body>
                 </Accordion.Collapse>
             </Card>
         </Accordion>
@@ -84,9 +92,11 @@ const Section = (props) => {
 };
 
 Section.propTypes = {
+    path: PropTypes.string.isRequired,
     form: PropTypes.any,
     isDynamic: PropTypes.bool.isRequired,
     dynamicId: PropTypes.string,
+    dynamicIndex: PropTypes.number,
     deleteContentItem: PropTypes.func,
     section: PropTypes.shape({
         header: PropTypes.string.isRequired,

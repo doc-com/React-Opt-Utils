@@ -18,6 +18,27 @@ class DynamicComponent extends Component {
         let entry;
         let dynamicId = uuid.v1();
         if (this.props.content.itemType === "section") {
+            entry = {
+                section: this.props.content,
+                key: this.props.content.header + this.props.content.orderInParent + "" + dynamicId,
+                dynamicId: dynamicId
+            };
+        }
+
+        if (this.props.content.itemType === "control") {
+            entry = {
+                control: this.props.content,
+                key: this.props.content.id + "" + dynamicId,
+                dynamicId: dynamicId
+            };
+        }
+
+        let newArray = [...this.state.contentArray, entry];
+        this.setState({contentArray: newArray})
+        /*
+        let entry;
+        let dynamicId = uuid.v1();
+        if (this.props.content.itemType === "section") {
             entry = <Section section={this.props.content}
                              key={this.props.content.header + this.props.content.orderInParent + "" + dynamicId}
                              translate={this.props.translate} isDynamic={true}
@@ -30,19 +51,29 @@ class DynamicComponent extends Component {
         if (this.props.content.itemType === "control") {
             entry =
                 <Control control={this.props.content} key={this.props.content.id + "" + dynamicId}
-                         translate={this.props.translate} isDynamic={true} dynamicId={dynamicId}
+                         translate={this.props.translate} isDynamic={true}
+                         dynamicId={dynamicId}
                          deleteContentItem={(index) => {
                              this.deleteContentItem(index)
                          }}/>
         }
 
         let newArray = [...this.state.contentArray, entry];
-        this.setState({contentArray: newArray}, () => {
-            console.log(this.state.contentArray)
-        })
+        this.setState({contentArray: newArray})
+         */
     }
 
-    deleteContentItem(dynamicId) {
+    deleteContentItem(index) {
+        let newArray = [...this.state.contentArray];
+        if (index === 0) {
+            newArray.shift()
+        } else {
+            newArray.splice(index, 1);
+        }
+        this.setState({contentArray: newArray}, () => {
+            console.log(this.state)
+        })
+        /*
         console.log(dynamicId);
         let newArray = [...this.state.contentArray];
         let item = newArray.find((item) => {
@@ -51,7 +82,8 @@ class DynamicComponent extends Component {
         newArray.splice(newArray.indexOf(item), 1);
         this.setState({contentArray: newArray}, () => {
             console.log(this.state)
-        })
+        })*/
+
     }
 
     render() {
@@ -70,7 +102,35 @@ class DynamicComponent extends Component {
                         </Col>
                     </Row>
                 </Card.Header>
-                <Card.Body>{this.state.contentArray}</Card.Body>
+                <Card.Body>{this.state.contentArray.map((entry, index) => {
+                    if (this.props.content.itemType === "section") {
+                        return <Section path={`${this.props.path}[${index}]`}
+                                        form={this.props.form}
+                                        section={entry.section}
+                                        key={entry.key}
+                                        translate={this.props.translate} isDynamic={true}
+                                        dynamicId={entry.dynamicId}
+                                        dynamicIndex={index}
+                                        deleteContentItem={(index) => {
+                                            this.deleteContentItem(index)
+                                        }}/>
+                    }
+
+                    if (this.props.content.itemType === "control") {
+                        return <Control path={`${this.props.path}[${index}]`}
+                                        form={this.props.form}
+                                        control={entry.control}
+                                        key={entry.key}
+                                        translate={this.props.translate} isDynamic={true}
+                                        dynamicId={entry.dynamicId}
+                                        dynamicIndex={index}
+                                        deleteContentItem={(index) => {
+                                            this.deleteContentItem(index)
+                                        }}/>
+                    }
+
+                    return ''
+                })}</Card.Body>
             </Card>
         )
     }
