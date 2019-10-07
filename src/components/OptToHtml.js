@@ -4,11 +4,12 @@ import {Button, Col, Container, Row, Spinner} from "react-bootstrap";
 import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
 import request from "request";
+
 let jsonTemplate = require("../resources/json/soap");
 
 const fetchJsonTemplate = (opt, callback) => {
     let options = {
-        url: 'https://opt-meta-ui-dev.doc.com/opt/meta',
+        url: 'http://localhost:8080/opt/meta',
         method: 'POST',
         headers: {
             'Content-Type': 'application/xml'
@@ -36,7 +37,6 @@ const OptToHtml = (props) => {
         <Container className="mt-3">
             <Formik
                 onSubmit={(values, actions) => {
-                    /*
                     if (values.optFile) {
                         handleFile(values.optFile, (err, content) => {
                             if (!err) {
@@ -57,11 +57,13 @@ const OptToHtml = (props) => {
                         });
                     } else {
                         console.error("File is null");
-                    }*/
+                    }
+                    /*
                     props.setState({
                         fetchingJsonTemplate: false,
                         jsonTemplate: jsonTemplate
                     });
+                     */
                 }}
                 render={({errors, status, touched, isSubmitting}) => (
                     <Form>

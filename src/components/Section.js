@@ -53,7 +53,7 @@ const renderContent = (section, translate, path, form) => {
                                          ey={item.id}
                                          translate={translate}/>
             }
-            return <Control path={`${path}.${item.id}`} control={item}
+            return <Control path={`${path}.${item.label}`} control={item}
                             form={form}
                             key={item.id}
                             translate={translate}
@@ -100,6 +100,7 @@ Section.propTypes = {
     deleteContentItem: PropTypes.func,
     section: PropTypes.shape({
         header: PropTypes.string.isRequired,
+        path: PropTypes.string.isRequired,
         controls: PropTypes.arrayOf(PropTypes.any),
         sections: PropTypes.arrayOf(PropTypes.any),
         occurrences: PropTypes.shape({

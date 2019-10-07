@@ -38,6 +38,7 @@ Control.propTypes = {
     control: PropTypes.shape({
         id: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
+        contributionPath: PropTypes.string.isRequired,
         rmTypeName: PropTypes.string.isRequired,
         occurrences: PropTypes.shape({
             lower_included: PropTypes.bool,

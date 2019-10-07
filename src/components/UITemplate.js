@@ -9,7 +9,15 @@ const UITemplate = (props) => {
         <div className={"mt-3"}>
             <Formik
                 onSubmit={(values, actions) => {
-                    console.log(flattenForm(values));
+                    console.log(values);
+                    let results = flattenForm(values);
+                    let filteredResults = {};
+                    Object.keys(results).forEach((key) => {
+                        if (key.includes("/version/data[@archetype_node_id='openEHR-EHR-COMPOSITION.soap.v0']/content[@archetype_node_id='openEHR-EHR-SECTION.soap.v0']/items[@archetype_node_id='openEHR-EHR-OBSERVATION.soap_s.v0']/data[@archetype_node_id='at0001']/events[@archetype_node_id='at0002']/data[@archetype_node_id='at0003']/items[@archetype_node_id='at0050']")) {
+                            filteredResults[key] = results[key]
+                        }
+                    });
+                    console.log(results);
                 }}
                 render={({handleSubmit, handleChange, handleBlur, values, errors}) =>
                     (<Form>
@@ -34,18 +42,17 @@ const flattenForm = (values) => {
 
 const flattenObject = (element, result) => {
     if (element.path) {
-        if (result[element.path]) {
-            if (Array.isArray(result[element.path])) {
-                result[element.path].push(element.value)
-            } else {
-                let val = result[element.path];
-                result[element.path] = [val]
-            }
-        } else {
-            result[element.path] = element.value ? element.value : 'empty'
-        }
+        console.log("------------------Found Value-------------");
+        console.log(element);
+        console.log("------------------------------------------");
+        result[element.path] = element.value ? element.value : 'empty'
     } else {
         if (Array.isArray(element)) {
+
+            element.forEach((item, index) => {
+                replaceIndexInPath(item, index)
+            });
+
             element.forEach((item) => {
                 flattenObject(item, result)
             })
@@ -58,6 +65,22 @@ const flattenObject = (element, result) => {
         }
     }
 
+};
+
+const replaceIndexInPath = (item, index) => {
+    if (item.path) {
+        item.path = item.path.replace("%index%", index)
+    } else {
+        if (Array.isArray(item)) {
+            item.forEach((item) => {
+                replaceIndexInPath(item, index)
+            });
+        } else {
+            Object.keys(item).forEach((key) => {
+                replaceIndexInPath(item[key], index)
+            })
+        }
+    }
 };
 
 UITemplate.propTypes = {

@@ -14,7 +14,7 @@ const OptInput = (props) => {
                 //console.log(field);
                 //console.log(form);
                 if (!field.value) {
-                    form.setFieldValue(props.path, {path: props.control.path, value: randomString(10)});
+                    form.setFieldValue(props.path, {path: props.control.contributionPath, value: randomString(10)});
                 }
                 return (
                     <input {...field}
@@ -22,7 +22,10 @@ const OptInput = (props) => {
                         //value={randomString(10)}
                            onChange={(e) => {
                                form.handleChange(e);
-                               form.setFieldValue(props.control.path, {path: props.control.path, value: e.target.value})
+                               form.setFieldValue(props.path, {
+                                   path: props.control.contributionPath,
+                                   value: e.target.value
+                               })
                            }}
                     />)
             }}
@@ -81,6 +84,7 @@ OptInput.propTypes = {
     control: PropTypes.shape({
         id: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
+        contributionPath: PropTypes.string.isRequired,
         rmTypeName: PropTypes.string.isRequired,
         occurrences: PropTypes.shape({
             lower_included: PropTypes.bool,
