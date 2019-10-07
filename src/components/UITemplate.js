@@ -9,7 +9,7 @@ const UITemplate = (props) => {
         <div className={"mt-3"}>
             <Formik
                 onSubmit={(values, actions) => {
-                    console.log(values)
+                    console.log(flattenForm(values));
                 }}
                 render={({handleSubmit, handleChange, handleBlur, values, errors}) =>
                     (<Form>
@@ -24,6 +24,40 @@ const UITemplate = (props) => {
                 }/>
         </div>
     )
+};
+
+const flattenForm = (values) => {
+    let result = {};
+    flattenObject(values, result);
+    return result;
+};
+
+const flattenObject = (element, result) => {
+    if (element.path) {
+        if (result[element.path]) {
+            if (Array.isArray(result[element.path])) {
+                result[element.path].push(element.value)
+            } else {
+                let val = result[element.path];
+                result[element.path] = [val]
+            }
+        } else {
+            result[element.path] = element.value ? element.value : 'empty'
+        }
+    } else {
+        if (Array.isArray(element)) {
+            element.forEach((item) => {
+                flattenObject(item, result)
+            })
+        } else {
+            Object.keys(element).forEach((key) => {
+                console.log(key);
+                flattenObject(element[key], result)
+            })
+
+        }
+    }
+
 };
 
 UITemplate.propTypes = {

@@ -2,17 +2,32 @@ import React from 'react';
 import PropTypes from "prop-types";
 import ControlType from "./ControlType";
 import InvalidInput from "./InvalidInput";
-import {Field} from "formik";
+import {FastField, Field} from "formik";
 
 const OptInput = (props) => {
     let content =
         //<Field type="text" name={props.path} />;
 
-        <Field
+        <FastField
             name={props.path}
-            render={({field}) => (
-                <input {...field}/>)}
-        />;
+            render={({field, form}) => {
+                //console.log(field);
+                //console.log(form);
+                if (!field.value) {
+                    form.setFieldValue(props.path, {path: props.control.path, value: randomString(10)});
+                }
+                return (
+                    <input {...field}
+                           value={field.value ? field.value.value : ''}
+                        //value={randomString(10)}
+                           onChange={(e) => {
+                               form.handleChange(e);
+                               form.setFieldValue(props.control.path, {path: props.control.path, value: e.target.value})
+                           }}
+                    />)
+            }}
+        />
+    ;
 
     /*
 
@@ -48,6 +63,16 @@ const OptInput = (props) => {
             break;
     }*/
     return content
+};
+
+const randomString = (length) => {
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 };
 
 OptInput.propTypes = {

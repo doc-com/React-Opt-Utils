@@ -4,6 +4,7 @@ import {Button, Col, Container, Row, Spinner} from "react-bootstrap";
 import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
 import request from "request";
+let jsonTemplate = require("../resources/json/soap");
 
 const fetchJsonTemplate = (opt, callback) => {
     let options = {
@@ -35,6 +36,7 @@ const OptToHtml = (props) => {
         <Container className="mt-3">
             <Formik
                 onSubmit={(values, actions) => {
+                    /*
                     if (values.optFile) {
                         handleFile(values.optFile, (err, content) => {
                             if (!err) {
@@ -55,7 +57,11 @@ const OptToHtml = (props) => {
                         });
                     } else {
                         console.error("File is null");
-                    }
+                    }*/
+                    props.setState({
+                        fetchingJsonTemplate: false,
+                        jsonTemplate: jsonTemplate
+                    });
                 }}
                 render={({errors, status, touched, isSubmitting}) => (
                     <Form>
