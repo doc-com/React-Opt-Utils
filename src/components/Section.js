@@ -46,8 +46,8 @@ const renderContent = (section, translate, path) => {
 
         if (item.itemType === "control") {
             if (item.occurrences.upper_unbounded) {
-                return <DynamicComponent path={`${path}.${item.id}`} content={item} k
-                                         ey={item.id}
+                return <DynamicComponent path={`${path}.${item.id}`} content={item}
+                                         key={item.id}
                                          translate={translate}/>
             }
             return <Control path={`${path}.${item.label}`} control={item}

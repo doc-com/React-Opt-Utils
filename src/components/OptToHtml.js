@@ -4,19 +4,20 @@ import {Button, Col, Container, Row, Spinner} from "react-bootstrap";
 import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
 import request from "request";
+import endpoints from "../constants/endpoints";
 
 let jsonTemplate = require("../resources/json/soap");
 
 const fetchJsonTemplate = (opt, callback) => {
     let options = {
-        //url: 'http://localhost:8080/opt/meta',
-        url: 'https://opt-meta-ui-dev.doc.com/opt/meta',
+        url: `${process.env.REACT_APP_OPT_META_HOST}${endpoints.optMeta}`,
         method: 'POST',
         headers: {
             'Content-Type': 'application/xml'
         },
         body: opt
     };
+    console.log(options.url)
     request(options, callback);
 };
 
@@ -90,8 +91,7 @@ const OptToHtml = (props) => {
                     </Spinner>
                 </Row>
                 : ''}
-            {props.template ? <UITemplate template={props.template} translate={() => {
-            }}/> : ''}
+            {props.template ? <UITemplate template={props.template} translate={(value) => value}/> : ''}
         </Container>
     )
 };

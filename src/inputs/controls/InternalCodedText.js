@@ -5,40 +5,43 @@ import {Form, InputGroup, Col, OverlayTrigger, Tooltip, Button} from "react-boot
 import {validateMandatory} from "./util";
 import _ from "lodash";
 
-const validateFreeText = (value, occurrences, translate) => {
+const validateInternalText = (value, occurrences, translate) => {
     let error;
     error = validateMandatory(value, occurrences, translate);
     return error;
 };
 
-const FreeText = (props) => (
+const InternalCodedText = (props) => (
     <FastField name={props.path}
                validate={(value) => {
-                   return validateFreeText(value, props.control.occurrences, props.translate)
+                   return validateInternalText(value, props.control.occurrences, props.translate)
                }}
                render={
                    ({field, form}) => {
                        return (
                            <Form.Group as={Col} controlId={props.path}>
                                <InputGroup>
-                                   <Form.Control
-                                       {...field}
-                                       value={field.value ? field.value.value : ''}
-                                       onChange={(e) => {
-                                           if (e.target.value) {
-                                               form.setFieldValue(props.path, {
-                                                   path: props.control.contributionPath,
-                                                   value: e.target.value
-                                               });
-                                           } else {
-                                               form.handleChange(e)
-                                           }
-                                       }}
-                                       type="text"
-                                       placeholder={props.control.label}
-                                       aria-describedby="inputGroupAppend"
-                                       isInvalid={!!_.get(form.errors, props.path)}
-                                   />
+                                   <Form.Control as="select"
+                                                 {...field}
+                                                 value={field.value ? JSON.stringify(field.value.value) : ''}
+                                                 onChange={(e) => {
+                                                     if (e.target.value) {
+                                                         console.log(e.target.value);
+                                                         console.log(JSON.parse(e.target.value));
+                                                         form.setFieldValue(props.path, {
+                                                             path: props.control.contributionPath,
+                                                             value: JSON.parse(e.target.value)
+                                                         })
+                                                     } else {
+                                                         form.handleChange(e)
+                                                     }
+                                                 }}
+                                                 aria-describedby="inputGroupAppend"
+                                                 isInvalid={!!_.get(form.errors, props.path)}>
+                                       {[<option hidden disabled selected value={""}>{props.translate('-- Select an option --')}</option>,...props.control.codeList.map(
+                                           (item, index) => <option key={`${props.path}-opt${index}`}
+                                                                    value={JSON.stringify(item)}>{item.text}</option>)]}
+                                   </Form.Control>
                                    <InputGroup.Append>
                                        <OverlayTrigger
                                            placement={'bottom'}
@@ -59,7 +62,7 @@ const FreeText = (props) => (
 );
 
 
-FreeText.propTypes = {
+InternalCodedText.propTypes = {
     path: PropTypes.string.isRequired,
     control: PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -86,4 +89,4 @@ FreeText.propTypes = {
     }),
     translate: PropTypes.func.isRequired
 };
-export default FreeText
+export default InternalCodedText

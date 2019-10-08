@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Section from "./Section";
 import {Form, Formik} from "formik";
+import {Form as BootstrapForm} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 const UITemplate = (props) => {
@@ -13,16 +14,23 @@ const UITemplate = (props) => {
                     let results = flattenForm(values);
                     console.log(JSON.stringify(results));
                 }}
-                render={({handleSubmit, handleChange, handleBlur, values, errors}) =>
-                    (<Form>
+                render={({
+                             handleSubmit,
+                             handleChange,
+                             handleBlur,
+                             values,
+                             touched,
+                             isValid,
+                             errors
+                         }) =>
+                    (<BootstrapForm noValidate onSubmit={handleSubmit}>
                         {props.template.sections.map((section) =>
                             <Section path={section.header}
-                                     form={{handleSubmit, handleChange, handleBlur, values, errors}}
                                      key={section.header + section.orderInParent}
                                      section={section} translate={props.translate}
                                      isDynamic={false}/>)}
-                        <Button type={"submit"}/>
-                    </Form>)
+                        <Button className={"mt-3"} type={"submit"} variant="success">Submit</Button>
+                    </BootstrapForm>)
                 }/>
         </div>
     )
