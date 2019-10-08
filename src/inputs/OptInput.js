@@ -5,6 +5,7 @@ import InvalidInput from "./InvalidInput";
 import FreeText from "./controls/FreeText";
 import {FastField} from "formik";
 import InternalCodedText from "./controls/InternalCodedText";
+import ExternalCodedText from "./controls/ExternalCodedText";
 
 const OptInput = (props) => {
     let content = <FastField name={props.path}
