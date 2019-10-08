@@ -35,32 +35,6 @@ class DynamicComponent extends Component {
 
         let newArray = [...this.state.contentArray, entry];
         this.setState({contentArray: newArray})
-        /*
-        let entry;
-        let dynamicId = uuid.v1();
-        if (this.props.content.itemType === "section") {
-            entry = <Section section={this.props.content}
-                             key={this.props.content.header + this.props.content.orderInParent + "" + dynamicId}
-                             translate={this.props.translate} isDynamic={true}
-                             dynamicId={dynamicId}
-                             deleteContentItem={(index) => {
-                                 this.deleteContentItem(index)
-                             }}/>
-        }
-
-        if (this.props.content.itemType === "control") {
-            entry =
-                <Control control={this.props.content} key={this.props.content.id + "" + dynamicId}
-                         translate={this.props.translate} isDynamic={true}
-                         dynamicId={dynamicId}
-                         deleteContentItem={(index) => {
-                             this.deleteContentItem(index)
-                         }}/>
-        }
-
-        let newArray = [...this.state.contentArray, entry];
-        this.setState({contentArray: newArray})
-         */
     }
 
     deleteContentItem(index) {
@@ -73,16 +47,6 @@ class DynamicComponent extends Component {
         this.setState({contentArray: newArray}, () => {
             console.log(this.state)
         })
-        /*
-        console.log(dynamicId);
-        let newArray = [...this.state.contentArray];
-        let item = newArray.find((item) => {
-            return item.dynamicId === dynamicId
-        });
-        newArray.splice(newArray.indexOf(item), 1);
-        this.setState({contentArray: newArray}, () => {
-            console.log(this.state)
-        })*/
 
     }
 
@@ -105,7 +69,6 @@ class DynamicComponent extends Component {
                 <Card.Body>{this.state.contentArray.map((entry, index) => {
                     if (this.props.content.itemType === "section") {
                         return <Section path={`${this.props.path}[${index}]`}
-                                        form={this.props.form}
                                         section={entry.section}
                                         key={entry.key}
                                         translate={this.props.translate} isDynamic={true}
@@ -118,7 +81,6 @@ class DynamicComponent extends Component {
 
                     if (this.props.content.itemType === "control") {
                         return <Control path={`${this.props.path}[${index}]`}
-                                        form={this.props.form}
                                         control={entry.control}
                                         key={entry.key}
                                         translate={this.props.translate} isDynamic={true}

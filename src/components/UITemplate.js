@@ -11,13 +11,7 @@ const UITemplate = (props) => {
                 onSubmit={(values, actions) => {
                     console.log(values);
                     let results = flattenForm(values);
-                    let filteredResults = {};
-                    Object.keys(results).forEach((key) => {
-                        if (key.includes("/version/data[@archetype_node_id='openEHR-EHR-COMPOSITION.soap.v0']/content[@archetype_node_id='openEHR-EHR-SECTION.soap.v0']/items[@archetype_node_id='openEHR-EHR-OBSERVATION.soap_s.v0']/data[@archetype_node_id='at0001']/events[@archetype_node_id='at0002']/data[@archetype_node_id='at0003']/items[@archetype_node_id='at0050']")) {
-                            filteredResults[key] = results[key]
-                        }
-                    });
-                    console.log(results);
+                    console.log(JSON.stringify(results));
                 }}
                 render={({handleSubmit, handleChange, handleBlur, values, errors}) =>
                     (<Form>
@@ -42,9 +36,6 @@ const flattenForm = (values) => {
 
 const flattenObject = (element, result) => {
     if (element.path) {
-        console.log("------------------Found Value-------------");
-        console.log(element);
-        console.log("------------------------------------------");
         result[element.path] = element.value ? element.value : 'empty'
     } else {
         if (Array.isArray(element)) {

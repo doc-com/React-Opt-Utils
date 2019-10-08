@@ -21,8 +21,7 @@ const Control = (props) => {
                     : ''}
             </Row>
             <Row>
-                <OptInput path={props.path} isDynamic={props.isDynamic} control={props.control} form={props.form}
-                          translate={props.translate}/>
+                <OptInput path={props.path} isDynamic={props.isDynamic} control={props.control} translate={props.translate}/>
             </Row>
         </Container>
     )
@@ -30,7 +29,6 @@ const Control = (props) => {
 
 Control.propTypes = {
     path: PropTypes.string.isRequired,
-    form: PropTypes.any,
     isDynamic: PropTypes.bool,
     dynamicId: PropTypes.string,
     dynamicIndex: PropTypes.number,

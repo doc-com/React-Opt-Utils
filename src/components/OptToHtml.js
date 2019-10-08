@@ -9,7 +9,8 @@ let jsonTemplate = require("../resources/json/soap");
 
 const fetchJsonTemplate = (opt, callback) => {
     let options = {
-        url: 'http://localhost:8080/opt/meta',
+        //url: 'http://localhost:8080/opt/meta',
+        url: 'https://opt-meta-ui-dev.doc.com/opt/meta',
         method: 'POST',
         headers: {
             'Content-Type': 'application/xml'

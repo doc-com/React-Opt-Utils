@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-const renderContent = (section, translate, path, form) => {
+const renderContent = (section, translate, path) => {
 
     let sectionArray = section.sections.map((section) => {
         section.itemType = "section";
@@ -35,12 +35,10 @@ const renderContent = (section, translate, path, form) => {
         if (item.itemType === "section") {
             if (item.occurrences.upper_unbounded) {
                 return <DynamicComponent path={`${path}.${item.header}`} content={item}
-                                         form={form}
                                          key={item.header + item.orderInParent}
                                          translate={translate}/>
             }
             return <Section path={`${path}.${item.header}`} section={item}
-                            form={form}
                             key={item.header + item.orderInParent}
                             translate={translate}
                             isDynamic={false}/>
@@ -49,12 +47,10 @@ const renderContent = (section, translate, path, form) => {
         if (item.itemType === "control") {
             if (item.occurrences.upper_unbounded) {
                 return <DynamicComponent path={`${path}.${item.id}`} content={item} k
-                                         form={form}
                                          ey={item.id}
                                          translate={translate}/>
             }
             return <Control path={`${path}.${item.label}`} control={item}
-                            form={form}
                             key={item.id}
                             translate={translate}
                             isDynamic={false}/>
@@ -84,7 +80,7 @@ const Section = (props) => {
                     </Row>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
-                    <Card.Body>{renderContent(props.section, props.translate, props.path, props.form)}</Card.Body>
+                    <Card.Body>{renderContent(props.section, props.translate, props.path)}</Card.Body>
                 </Accordion.Collapse>
             </Card>
         </Accordion>
@@ -93,7 +89,6 @@ const Section = (props) => {
 
 Section.propTypes = {
     path: PropTypes.string.isRequired,
-    form: PropTypes.any,
     isDynamic: PropTypes.bool.isRequired,
     dynamicId: PropTypes.string,
     dynamicIndex: PropTypes.number,

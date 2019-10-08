@@ -2,35 +2,56 @@ import React from 'react';
 import PropTypes from "prop-types";
 import ControlType from "./ControlType";
 import InvalidInput from "./InvalidInput";
-import {FastField, Field} from "formik";
+import FreeText from "./controls/FreeText";
+import {FastField} from "formik";
 
 const OptInput = (props) => {
-    let content =
-        //<Field type="text" name={props.path} />;
-
-        <FastField
-            name={props.path}
-            render={({field, form}) => {
-                //console.log(field);
-                //console.log(form);
-                if (!field.value) {
-                    form.setFieldValue(props.path, {path: props.control.contributionPath, value: randomString(10)});
-                }
-                return (
-                    <input {...field}
-                           value={field.value ? field.value.value : ''}
-                        //value={randomString(10)}
-                           onChange={(e) => {
-                               form.handleChange(e);
-                               form.setFieldValue(props.path, {
-                                   path: props.control.contributionPath,
-                                   value: e.target.value
-                               })
-                           }}
-                    />)
-            }}
-        />
-    ;
+    let content = <FastField name={props.path}
+                             render={
+                                 ({field, form}) => {
+                                     return (<div>
+                                         <input {...field}
+                                                value={field.value ? field.value.value : ''}
+                                                onChange={(e) => {
+                                                    form.handleChange(e);
+                                                    form.setFieldValue(props.path, {
+                                                        path: props.control.contributionPath,
+                                                        value: e.target.value
+                                                    })
+                                                }}
+                                         />
+                                     </div>)
+                                 }
+                             }/>;
+    /*
+    switch (props.control.type) {
+        case ControlType.FREE_TEXT:
+            //content = <FreeText control={props.control} translate={props.translate} path={props.path}/>;
+            break;
+        case ControlType.INTERNAL_CODED_TEXT:
+            break;
+        case ControlType.EXTERNAL_CODED_TEXT:
+            break;
+        case ControlType.CONSTRAINED_TEXT:
+            break;
+        case ControlType.QUANTITY:
+            break;
+        case ControlType.COUNT:
+            break;
+        case ControlType.DATE:
+            break;
+        case ControlType.DATETIME:
+            break;
+        case ControlType.ORDINAL:
+            break;
+        case ControlType.BOOLEAN_CHECK:
+            break;
+        case ControlType.DURATION:
+            break;
+        default:
+            content = <InvalidInput/>;
+            break;
+    }*/
 
     /*
 
