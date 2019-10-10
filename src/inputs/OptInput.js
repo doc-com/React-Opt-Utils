@@ -6,6 +6,7 @@ import FreeText from "./controls/FreeText";
 import {FastField} from "formik";
 import InternalCodedText from "./controls/InternalCodedText";
 import ExternalCodedText from "./controls/ExternalCodedText";
+import Quantity from "./controls/Quantity";
 
 const OptInput = (props) => {
     let content = <FastField name={props.path}
@@ -39,6 +40,7 @@ const OptInput = (props) => {
         case ControlType.CONSTRAINED_TEXT:
             break;
         case ControlType.QUANTITY:
+            content = <Quantity control={props.control} translate={props.translate} path={props.path}/>;
             break;
         case ControlType.COUNT:
             break;
@@ -53,7 +55,7 @@ const OptInput = (props) => {
         case ControlType.DURATION:
             break;
         default:
-            content = <InvalidInput/>;
+            content = <InvalidInput translate={props.translate}/>;
             break;
     }
     return content

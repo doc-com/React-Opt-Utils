@@ -14,6 +14,7 @@ const UITemplate = (props) => {
                     let results = flattenForm(values);
                     console.log(JSON.stringify(results));
                 }}
+                initialValues={{}}
                 render={({
                              handleSubmit,
                              handleChange,

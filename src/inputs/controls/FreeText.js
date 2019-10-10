@@ -23,12 +23,12 @@ const FreeText = (props) => (
                                <InputGroup>
                                    <Form.Control
                                        {...field}
-                                       value={field.value ? field.value.value : ''}
+                                       value={field.value ? field.value.textValue : ''}
                                        onChange={(e) => {
                                            if (e.target.value) {
                                                form.setFieldValue(props.path, {
                                                    path: props.control.contributionPath,
-                                                   value: e.target.value
+                                                   textValue: e.target.value
                                                });
                                            } else {
                                                form.handleChange(e)
@@ -37,7 +37,7 @@ const FreeText = (props) => (
                                        type="text"
                                        placeholder={props.control.label}
                                        aria-describedby="inputGroupAppend"
-                                       isInvalid={!!_.get(form.errors, props.path)}
+                                       isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}
                                    />
                                    <InputGroup.Append>
                                        <OverlayTrigger

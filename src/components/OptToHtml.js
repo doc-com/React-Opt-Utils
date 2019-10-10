@@ -17,7 +17,6 @@ const fetchJsonTemplate = (opt, callback) => {
         },
         body: opt
     };
-    console.log(options.url)
     request(options, callback);
 };
 

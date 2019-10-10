@@ -18,29 +18,35 @@ const InternalCodedText = (props) => (
                }}
                render={
                    ({field, form}) => {
+                       //TODO Replace for translatable key in Medical Heroes
                        return (
                            <Form.Group as={Col} controlId={props.path}>
                                <InputGroup>
                                    <Form.Control as="select"
                                                  {...field}
-                                                 value={field.value ? JSON.stringify(field.value.value) : ''}
+                                                 value={field.value ? JSON.stringify(field.value.code) : ''}
                                                  onChange={(e) => {
                                                      if (e.target.value) {
-                                                         console.log(e.target.value);
-                                                         console.log(JSON.parse(e.target.value));
-                                                         form.setFieldValue(props.path, {
-                                                             path: props.control.contributionPath,
-                                                             value: JSON.parse(e.target.value)
-                                                         })
+                                                         let selectedEntry = props.control.codeList.filter((entry) => {
+                                                             return entry.code === e.target.value
+                                                         });
+                                                         if (selectedEntry && selectedEntry[0]) {
+                                                             form.setFieldValue(props.path, {
+                                                                 path: props.control.contributionPath,
+                                                                 code: selectedEntry[0].code,
+                                                                 textValue: selectedEntry[0].text
+                                                             })
+                                                         }
                                                      } else {
                                                          form.handleChange(e)
                                                      }
                                                  }}
                                                  aria-describedby="inputGroupAppend"
-                                                 isInvalid={!!_.get(form.errors, props.path)}>
-                                       {[<option hidden disabled selected value={""}>{props.translate('-- Select an option --')}</option>,...props.control.codeList.map(
+                                                 isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
+                                       {[<option hidden disabled selected
+                                                 value={""} key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.codeList.map(
                                            (item, index) => <option key={`${props.path}-opt${index}`}
-                                                                    value={JSON.stringify(item)}>{item.text}</option>)]}
+                                                                    value={item.code}>{item.text}</option>)]}
                                    </Form.Control>
                                    <InputGroup.Append>
                                        <OverlayTrigger
