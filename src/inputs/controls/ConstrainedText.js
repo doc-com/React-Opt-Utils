@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import ConstrainedTextContent from "./ConstrainedTextContent";
-import endpoints from "../../constants/endpoints";
 import request from "request";
 
 class ConstrainedText extends Component {
@@ -17,24 +16,31 @@ class ConstrainedText extends Component {
     render() {
         return (
             <ConstrainedTextContent
-                setState={(newState) => {
-                    this.setState(newState)
+                searchTerminologies={(search) => {
+                    this.setState({loading: true}, () => {
+                        this.fetchTerminologies(search, this.props.control.referenceSetUri, (results) => {
+                            this.setState({loading: false, queryResults: results})
+                        })
+                    });
+
                 }}
+                loading={this.state.loading}
                 path={this.props.path}
                 control={this.props.control}
                 translate={this.props.translate}
                 options={this.state.queryResults}
-
             />
         )
     }
 
-    fetchTerminologies() {
+    fetchTerminologies(search, referenceSetUri, callback) {
+        let formattedExp = referenceSetUri.referenceSet.replace(':', '=');
         let options = {
-            url: `${process.env.REACT_APP_TERMINOLOGY_HOST}${endpoints.optMeta}`,
+            url: `${process.env.REACT_APP_TERMINOLOGY_HOST}${formattedExp}`,
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Accept-Language': 'en',
+                'Accept': 'application/json'
             }
         };
         request(options, callback);

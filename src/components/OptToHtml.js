@@ -6,7 +6,7 @@ import CustomFile from "../inputs/CustomFile";
 import request from "request";
 import endpoints from "../constants/endpoints";
 
-let jsonTemplate = require("../resources/json/soap");
+//let jsonTemplate = require("../resources/json/soap");
 
 const fetchJsonTemplate = (opt, callback) => {
     let options = {

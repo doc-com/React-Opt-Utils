@@ -7,6 +7,9 @@ import {FastField} from "formik";
 import InternalCodedText from "./controls/InternalCodedText";
 import ExternalCodedText from "./controls/ExternalCodedText";
 import Quantity from "./controls/Quantity";
+import ConstrainedText from "./controls/ConstrainedText";
+import Count from "./controls/Count";
+import Date from "./controls/Date";
 
 const OptInput = (props) => {
     let content = <FastField name={props.path}
@@ -38,13 +41,16 @@ const OptInput = (props) => {
             content = <ExternalCodedText control={props.control} translate={props.translate} path={props.path}/>;
             break;
         case ControlType.CONSTRAINED_TEXT:
+            content = <ConstrainedText control={props.control} translate={props.translate} path={props.path}/>;
             break;
         case ControlType.QUANTITY:
             content = <Quantity control={props.control} translate={props.translate} path={props.path}/>;
             break;
         case ControlType.COUNT:
+            content = <Count control={props.control} translate={props.translate} path={props.path}/>;
             break;
         case ControlType.DATE:
+            content = <Date control={props.control} translate={props.translate} path={props.path}/>;
             break;
         case ControlType.DATETIME:
             break;
@@ -61,6 +67,7 @@ const OptInput = (props) => {
     return content
 };
 
+/*
 const randomString = (length) => {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -69,7 +76,7 @@ const randomString = (length) => {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
-};
+};*/
 
 OptInput.propTypes = {
     form: PropTypes.any,

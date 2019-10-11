@@ -44,10 +44,7 @@ class DynamicComponent extends Component {
         } else {
             newArray.splice(index, 1);
         }
-        this.setState({contentArray: newArray}, () => {
-            console.log(this.state)
-        })
-
+        this.setState({contentArray: newArray});
     }
 
     render() {

@@ -1,7 +1,9 @@
 import React from "react"
 import {Button, Col, Form, InputGroup, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {AsyncTypeahead} from 'react-bootstrap-typeahead';
 import {FastField} from "formik";
 import {validateMandatory} from "./util";
+import _ from "lodash";
 
 const validateConstrainedText = (value, occurrences, translate) => {
     let error;
@@ -21,32 +23,31 @@ const ConstrainedTextContent = (props) => {
                            return (
                                <Form.Group as={Col} controlId={props.path}>
                                    <InputGroup>
-                                       <Form.Control as="select"
-                                                     {...field}
-                                                     value={field.value ? JSON.stringify(field.value.code) : ''}
-                                                     onChange={(e) => {
-                                                         if (e.target.value) {
-                                                             let selectedEntry = props.control.codeList.filter((entry) => {
-                                                                 return entry.code === e.target.value
-                                                             });
-                                                             if (selectedEntry && selectedEntry[0]) {
-                                                                 form.setFieldValue(props.path, {
-                                                                     path: props.control.contributionPath,
-                                                                     code: selectedEntry[0].code,
-                                                                     textValue: selectedEntry[0].text
-                                                                 })
-                                                             }
-                                                         } else {
-                                                             form.handleChange(e)
-                                                         }
-                                                     }}
-                                                     aria-describedby="inputGroupAppend"
-                                                     isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
-                                           {[<option hidden disabled selected
-                                                     value={""}>{props.translate('-- Select an option --')}</option>, ...props.control.codeList.map(
-                                               (item, index) => <option key={`${props.path}-opt${index}`}
-                                                                        value={item.code}>{item.text}</option>)]}
-                                       </Form.Control>
+                                       <AsyncTypeahead
+                                           id={props.path}
+                                           isLoading={props.loading}
+                                           onSearch={(query) => {
+                                               props.searchTerminologies(query)
+                                           }}
+                                           promptText={props.translate('Type to search...')}
+                                           searchText={props.translate('Searching...')}
+                                           minLength={4}
+                                           maxResults={50}
+                                           onChange={(selected) => {
+                                               if (selected) {
+                                                   form.setFieldValue(props.path, {
+                                                       path: props.control.contributionPath,
+                                                       code: selected.code,
+                                                       textValue: selected.text
+                                                   })
+                                               } else {
+                                                   form.handleChange(selected)
+                                               }
+                                           }}
+                                           options={props.queryResults}
+                                           selected={field.value ? field.value.selected : []}
+                                           isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}
+                                       />
                                        <InputGroup.Append>
                                            <OverlayTrigger
                                                placement={'bottom'}

@@ -40,7 +40,6 @@ const Quantity = (props) => (
                }}
                render={
                    ({field, form}) => {
-                       console.log(form.touched);
                        //console.log(props.control);
                        let selectedMagnitude = field.value ? props.control.quantityItems.filter((item) => {
                            return item.units === field.value.units
@@ -88,8 +87,7 @@ const Quantity = (props) => (
                                                  }}
                                                  aria-describedby="inputGroupAppend"
                                                  isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
-                                       {[<option hidden disabled selected
-                                                 value={""}
+                                       {[<option hidden disabled value={""}
                                                  key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.quantityItems.map(
                                            (item, index) => <option key={`${props.path}-opt${index}`}
                                                                     value={item.units}>{item.units}</option>)]}

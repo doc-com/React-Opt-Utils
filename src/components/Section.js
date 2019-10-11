@@ -95,7 +95,7 @@ Section.propTypes = {
     deleteContentItem: PropTypes.func,
     section: PropTypes.shape({
         header: PropTypes.string.isRequired,
-        path: PropTypes.string.isRequired,
+        path: PropTypes.string,
         controls: PropTypes.arrayOf(PropTypes.any),
         sections: PropTypes.arrayOf(PropTypes.any),
         occurrences: PropTypes.shape({

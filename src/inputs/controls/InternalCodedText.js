@@ -24,7 +24,7 @@ const InternalCodedText = (props) => (
                                <InputGroup>
                                    <Form.Control as="select"
                                                  {...field}
-                                                 value={field.value ? JSON.stringify(field.value.code) : ''}
+                                                 value={field.value ? field.value.code : ''}
                                                  onChange={(e) => {
                                                      if (e.target.value) {
                                                          let selectedEntry = props.control.codeList.filter((entry) => {
@@ -43,8 +43,7 @@ const InternalCodedText = (props) => (
                                                  }}
                                                  aria-describedby="inputGroupAppend"
                                                  isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
-                                       {[<option hidden disabled selected
-                                                 value={""} key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.codeList.map(
+                                       {[<option hidden disabled value={""} key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.codeList.map(
                                            (item, index) => <option key={`${props.path}-opt${index}`}
                                                                     value={item.code}>{item.text}</option>)]}
                                    </Form.Control>
