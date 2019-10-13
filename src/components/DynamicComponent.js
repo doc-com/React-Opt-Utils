@@ -65,7 +65,8 @@ class DynamicComponent extends Component {
                 </Card.Header>
                 <Card.Body>{this.state.contentArray.map((entry, index) => {
                     if (this.props.content.itemType === "section") {
-                        return <Section path={`${this.props.path}[${index}]`}
+                        return <Section setInitialValues={this.props.setInitialValues}
+                                        path={`${this.props.path}[${index}]`}
                                         section={entry.section}
                                         key={entry.key}
                                         translate={this.props.translate} isDynamic={true}
@@ -77,7 +78,8 @@ class DynamicComponent extends Component {
                     }
 
                     if (this.props.content.itemType === "control") {
-                        return <Control path={`${this.props.path}[${index}]`}
+                        return <Control setInitialValues={this.props.setInitialValues}
+                                        path={`${this.props.path}[${index}]`}
                                         control={entry.control}
                                         key={entry.key}
                                         translate={this.props.translate} isDynamic={true}

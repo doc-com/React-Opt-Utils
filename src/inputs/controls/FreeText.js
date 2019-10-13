@@ -6,7 +6,7 @@ import {validateMandatory} from "./util";
 import _ from "lodash";
 
 const validateFreeText = (value, occurrences, translate) => {
-    let error;
+    let error = "";
     error = validateMandatory(value, occurrences, translate);
     return error;
 };
@@ -18,6 +18,7 @@ const FreeText = (props) => (
                }}
                render={
                    ({field, form}) => {
+                       if (props.path) props.setInitialValues(props.path);
                        return (
                            <Form.Group as={Col} controlId={props.path}>
                                <InputGroup>
@@ -28,7 +29,8 @@ const FreeText = (props) => (
                                            if (e.target.value) {
                                                form.setFieldValue(props.path, {
                                                    path: props.control.contributionPath,
-                                                   textValue: e.target.value
+                                                   textValue: e.target.value,
+                                                   type: props.control.type
                                                });
                                            } else {
                                                form.handleChange(e)
@@ -37,7 +39,7 @@ const FreeText = (props) => (
                                        type="text"
                                        placeholder={props.control.label}
                                        aria-describedby="inputGroupAppend"
-                                       isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}
+                                       isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}
                                    />
                                    <InputGroup.Append>
                                        <OverlayTrigger

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Section from "./Section";
 import {Formik} from "formik";
 import {Form as BootstrapForm} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import ControlType from "../inputs/ControlType";
 
 const UITemplate = (props) => {
     return (
@@ -13,8 +14,9 @@ const UITemplate = (props) => {
                     console.log(values);
                     let results = flattenForm(values);
                     console.log(JSON.stringify(results));
+                    console.log(props.initialValues)
                 }}
-                initialValues={{}}
+                initialValues={props.initialValues}
                 render={({
                              handleSubmit,
                              handleChange,
@@ -26,10 +28,12 @@ const UITemplate = (props) => {
                          }) =>
                     (<BootstrapForm noValidate onSubmit={handleSubmit}>
                         {props.template.sections.map((section) =>
-                            <Section path={section.header}
-                                     key={section.header + section.orderInParent}
-                                     section={section} translate={props.translate}
-                                     isDynamic={false}/>)}
+                            <Section
+                                setInitialValues={props.setInitialValues}
+                                path={section.header}
+                                key={section.header + section.orderInParent}
+                                section={section} translate={props.translate}
+                                isDynamic={false}/>)}
                         <Button className={"mt-3"} type={"submit"} variant="success">Submit</Button>
                     </BootstrapForm>)
                 }/>
@@ -45,7 +49,7 @@ const flattenForm = (values) => {
 
 const flattenObject = (element, result) => {
     if (element.path) {
-        result[element.path] = element.value ? element.value : 'empty'
+        setValueByType(element, result)
     } else {
         if (Array.isArray(element)) {
 
@@ -63,6 +67,58 @@ const flattenObject = (element, result) => {
             })
 
         }
+    }
+
+};
+
+const setValueByType = (element, result) => {
+    console.log(element);
+    switch (element.type) {
+        case ControlType.FREE_TEXT:
+            result[`${element.path}/value`] = element.textValue ? element.textValue : 'empty';
+            break;
+        case ControlType.INTERNAL_CODED_TEXT:
+            result[`${element.path}/value`] = element.textValue ? element.textValue : 'empty';
+            result[`${element.path}/defining_code/terminology_id/value`] = 'local';
+            result[`${element.path}/defining_code/code_string`] = element.code ? element.code : 'empty';
+            break;
+        case ControlType.EXTERNAL_CODED_TEXT:
+            result[`${element.path}/value`] = element.textValue ? element.textValue : 'empty';
+            result[`${element.path}/defining_code/terminology_id/value`] = 'SNOMED-CT';
+            result[`${element.path}/defining_code/code_string`] = element.code ? element.code : 'empty';
+            break;
+        case ControlType.CONSTRAINED_TEXT:
+            result[`${element.path}/value`] = element.textValue ? element.textValue : 'empty';
+            result[`${element.path}/defining_code/terminology_id/value`] = 'SNOMED-CT';
+            result[`${element.path}/defining_code/code_string`] = element.code ? element.code : 'empty';
+            break;
+        case ControlType.QUANTITY:
+            result[`${element.path}/magnitude`] = element.magnitude ? element.magnitude : 'empty';
+            result[`${element.path}/units`] = element.units ? element.units : 'empty';
+            break;
+        case ControlType.COUNT:
+            result[`${element.path}/magnitude`] = element.count ? element.count : 'empty';
+            break;
+        case ControlType.DATE:
+            result[`${element.path}/value`] = element.date ? element.date.toISOString() : 'empty';
+            break;
+        case ControlType.DATETIME:
+            result[`${element.path}/value`] = element.date ? element.date.toISOString() : 'empty';
+            break;
+        case ControlType.ORDINAL:
+            result[`${element.path}/value`] = element.ordinalValue ? element.ordinalValue : 'empty';
+            result[`${element.path}/symbol/value`] = element.textValue ? element.textValue : 'empty';
+            result[`${element.path}/symbol/defining_code/terminology_id/value`] = element.terminologyId ? element.terminologyId : 'empty';
+            result[`${element.path}/symbol/defining_code/code_string`] = element.code ? element.code : 'empty';
+            break;
+        case ControlType.BOOLEAN_CHECK:
+            result[`${element.path}/value`] = element.value ? element.value : 'empty';
+            break;
+        case ControlType.DURATION:
+            result[`${element.path}/value`] = element.formattedValue ? element.formattedValue : 'empty';
+            break;
+        default:
+            break;
     }
 
 };

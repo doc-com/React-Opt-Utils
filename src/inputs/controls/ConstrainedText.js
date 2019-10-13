@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import ConstrainedTextContent from "./ConstrainedTextContent";
 import request from "request";
+import InternalCodedText from "./InternalCodedText";
 
 class ConstrainedText extends Component {
 
@@ -16,6 +17,7 @@ class ConstrainedText extends Component {
     render() {
         return (
             <ConstrainedTextContent
+                setInitialValues={this.props.setInitialValues}
                 searchTerminologies={(search) => {
                     this.setState({loading: true}, () => {
                         this.fetchTerminologies(search, this.props.control.referenceSetUri, (results) => {

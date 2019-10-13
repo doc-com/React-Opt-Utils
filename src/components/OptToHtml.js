@@ -5,6 +5,7 @@ import {Field, Form, Formik} from "formik";
 import CustomFile from "../inputs/CustomFile";
 import request from "request";
 import endpoints from "../constants/endpoints";
+import UITemplateContainer from "./UITemplateContainer";
 
 //let jsonTemplate = require("../resources/json/soap");
 
@@ -90,7 +91,7 @@ const OptToHtml = (props) => {
                     </Spinner>
                 </Row>
                 : ''}
-            {props.template ? <UITemplate template={props.template} translate={(value) => value}/> : ''}
+            {props.template ? <UITemplateContainer template={props.template} translate={(value) => value}/> : ''}
         </Container>
     )
 };

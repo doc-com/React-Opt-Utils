@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-const renderContent = (section, translate, path) => {
+const renderContent = (section, translate, path, setInitialValues) => {
 
     let sectionArray = section.sections.map((section) => {
         section.itemType = "section";
@@ -34,11 +34,19 @@ const renderContent = (section, translate, path) => {
 
         if (item.itemType === "section") {
             if (item.occurrences.upper_unbounded) {
-                return <DynamicComponent path={`${path}.${item.header}`} content={item}
+                return <DynamicComponent setInitialValues={(obj) => {
+                    //console.log(obj);
+                    setInitialValues(obj)
+                }}
+                                         path={`${path}.${item.header}`} content={item}
                                          key={item.header + item.orderInParent}
                                          translate={translate}/>
             }
-            return <Section path={`${path}.${item.header}`} section={item}
+            return <Section setInitialValues={(obj) => {
+                //console.log(obj);
+                setInitialValues(obj)
+            }}
+                            path={`${path}.${item.header}`} section={item}
                             key={item.header + item.orderInParent}
                             translate={translate}
                             isDynamic={false}/>
@@ -46,11 +54,19 @@ const renderContent = (section, translate, path) => {
 
         if (item.itemType === "control") {
             if (item.occurrences.upper_unbounded) {
-                return <DynamicComponent path={`${path}.${item.id}`} content={item}
+                return <DynamicComponent setInitialValues={(obj) => {
+                    //console.log(obj);
+                    setInitialValues(obj)
+                }}
+                                         path={`${path}.${item.id}`} content={item}
                                          key={item.id}
                                          translate={translate}/>
             }
-            return <Control path={`${path}.${item.label}`} control={item}
+            return <Control setInitialValues={(obj) => {
+                //console.log(obj);
+                setInitialValues(obj)
+            }}
+                            path={`${path}.${item.label}`} control={item}
                             key={item.id}
                             translate={translate}
                             isDynamic={false}/>
@@ -80,7 +96,7 @@ const Section = (props) => {
                     </Row>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
-                    <Card.Body>{renderContent(props.section, props.translate, props.path)}</Card.Body>
+                    <Card.Body>{renderContent(props.section, props.translate, props.path, props.setInitialValues)}</Card.Body>
                 </Accordion.Collapse>
             </Card>
         </Accordion>
@@ -93,6 +109,7 @@ Section.propTypes = {
     dynamicId: PropTypes.string,
     dynamicIndex: PropTypes.number,
     deleteContentItem: PropTypes.func,
+    setInitialValues: PropTypes.func.isRequired,
     section: PropTypes.shape({
         header: PropTypes.string.isRequired,
         path: PropTypes.string,

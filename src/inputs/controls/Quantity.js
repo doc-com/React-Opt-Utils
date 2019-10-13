@@ -10,26 +10,21 @@ const validateQuantity = (value, quantityItems, occurrences, translate) => {
         return item.units === value.units
     }) : '';
     let magnitude = selectedMagnitude[0].magnitude;
-    let error;
-
+    let error = "";
     if (magnitude.lower_included && value.magnitude < magnitude.lower) {
         //TODO Replace for translatable key in Medical Heroes
         error = translate('Value too low');
     }
-
     if (!error && (magnitude.upper_included && value.magnitude > magnitude.upper)) {
         //TODO Replace for translatable key in Medical Heroes
         error = translate('Value too big');
     }
-
     if (!error) {
         error = validateMandatory(value.magnitude, occurrences, translate);
     }
-
     if (!error) {
         error = validateMandatory(value.units, occurrences, translate);
     }
-
     return error;
 };
 
@@ -40,7 +35,7 @@ const Quantity = (props) => (
                }}
                render={
                    ({field, form}) => {
-                       //console.log(props.control);
+                       if(props.path)props.setInitialValues(props.path);
                        let selectedMagnitude = field.value ? props.control.quantityItems.filter((item) => {
                            return item.units === field.value.units
                        }) : '';
@@ -58,7 +53,8 @@ const Quantity = (props) => (
                                                form.setFieldValue(props.path, {
                                                    path: props.control.contributionPath,
                                                    magnitude: e.target.value,
-                                                   units: field.value ? field.value.units : ''
+                                                   units: field.value ? field.value.units : '',
+                                                   type: props.control.type
                                                });
                                            } else {
                                                form.handleChange(e)
@@ -69,7 +65,7 @@ const Quantity = (props) => (
                                        max={(selectedMagnitude && selectedMagnitude[0] && selectedMagnitude[0].magnitude.upper_included) ? selectedMagnitude[0].magnitude.upper : 10000}
                                        placeholder={props.control.label}
                                        aria-describedby="inputGroupAppend"
-                                       isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}
+                                       isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}
                                    />
                                    <Form.Control as="select"
                                                  {...field}
@@ -79,14 +75,15 @@ const Quantity = (props) => (
                                                          form.setFieldValue(props.path, {
                                                              path: props.control.contributionPath,
                                                              magnitude: field.value ? field.value.magnitude : '',
-                                                             units: e.target.value
+                                                             units: e.target.value,
+                                                             type: props.control.type
                                                          })
                                                      } else {
                                                          form.handleChange(e)
                                                      }
                                                  }}
                                                  aria-describedby="inputGroupAppend"
-                                                 isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
+                                                 isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
                                        {[<option hidden disabled value={""}
                                                  key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.quantityItems.map(
                                            (item, index) => <option key={`${props.path}-opt${index}`}

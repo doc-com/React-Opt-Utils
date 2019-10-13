@@ -10,11 +10,18 @@ import Quantity from "./controls/Quantity";
 import ConstrainedText from "./controls/ConstrainedText";
 import Count from "./controls/Count";
 import Date from "./controls/Date";
+import DateTime from "./controls/DateTime";
+import BooleanCheck from "./controls/BooleanCheck";
+import Ordinal from "./controls/Ordinal";
+import _ from 'lodash'
+import Section from "../components/Section";
+import Duration from "./controls/Duration";
 
 const OptInput = (props) => {
     let content = <FastField name={props.path}
                              render={
                                  ({field, form}) => {
+                                     if (props.path) props.setInitialValues(props.path);
                                      return (<div>
                                          <input {...field}
                                                 value={field.value ? field.value.value : ''}
@@ -32,38 +39,61 @@ const OptInput = (props) => {
 
     switch (props.control.type) {
         case ControlType.FREE_TEXT:
-            content = <FreeText control={props.control} translate={props.translate} path={props.path}/>;
+            content =
+                <FreeText setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                          path={props.path}/>;
             break;
         case ControlType.INTERNAL_CODED_TEXT:
-            content = <InternalCodedText control={props.control} translate={props.translate} path={props.path}/>;
+            content = <InternalCodedText setInitialValues={props.setInitialValues} control={props.control}
+                                         translate={props.translate} path={props.path}/>;
             break;
         case ControlType.EXTERNAL_CODED_TEXT:
-            content = <ExternalCodedText control={props.control} translate={props.translate} path={props.path}/>;
+            content = <ExternalCodedText setInitialValues={props.setInitialValues} control={props.control}
+                                         translate={props.translate} path={props.path}/>;
             break;
         case ControlType.CONSTRAINED_TEXT:
-            content = <ConstrainedText control={props.control} translate={props.translate} path={props.path}/>;
+            content = <ConstrainedText setInitialValues={props.setInitialValues} control={props.control}
+                                       translate={props.translate} path={props.path}/>;
             break;
         case ControlType.QUANTITY:
-            content = <Quantity control={props.control} translate={props.translate} path={props.path}/>;
+            content =
+                <Quantity setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                          path={props.path}/>;
             break;
         case ControlType.COUNT:
-            content = <Count control={props.control} translate={props.translate} path={props.path}/>;
+            content =
+                <Count setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                       path={props.path}/>;
             break;
         case ControlType.DATE:
-            content = <Date control={props.control} translate={props.translate} path={props.path}/>;
+            content =
+                <Date setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                      path={props.path}/>;
             break;
         case ControlType.DATETIME:
+            content =
+                <DateTime setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                          path={props.path}/>;
             break;
         case ControlType.ORDINAL:
+            content =
+                <Ordinal setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                         path={props.path}/>;
             break;
         case ControlType.BOOLEAN_CHECK:
+            content = <BooleanCheck setInitialValues={props.setInitialValues} control={props.control}
+                                    translate={props.translate} path={props.path}/>;
             break;
         case ControlType.DURATION:
+            content =
+                <Duration setInitialValues={props.setInitialValues} control={props.control} translate={props.translate}
+                          path={props.path}/>;
             break;
         default:
             content = <InvalidInput translate={props.translate}/>;
             break;
     }
+
     return content
 };
 

@@ -6,7 +6,7 @@ import {validateMandatory} from "./util";
 import _ from "lodash";
 
 const validateInternalText = (value, occurrences, translate) => {
-    let error;
+    let error = "";
     error = validateMandatory(value, occurrences, translate);
     return error;
 };
@@ -18,6 +18,7 @@ const InternalCodedText = (props) => (
                }}
                render={
                    ({field, form}) => {
+                       if (props.path) props.setInitialValues(props.path);
                        //TODO Replace for translatable key in Medical Heroes
                        return (
                            <Form.Group as={Col} controlId={props.path}>
@@ -34,7 +35,8 @@ const InternalCodedText = (props) => (
                                                              form.setFieldValue(props.path, {
                                                                  path: props.control.contributionPath,
                                                                  code: selectedEntry[0].code,
-                                                                 textValue: selectedEntry[0].text
+                                                                 textValue: selectedEntry[0].text,
+                                                                 type: props.control.type
                                                              })
                                                          }
                                                      } else {
@@ -42,8 +44,9 @@ const InternalCodedText = (props) => (
                                                      }
                                                  }}
                                                  aria-describedby="inputGroupAppend"
-                                                 isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
-                                       {[<option hidden disabled value={""} key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.codeList.map(
+                                                 isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}>
+                                       {[<option hidden disabled value={""}
+                                                 key={`${props.path}-opt-1`}>{props.translate('-- Select an option --')}</option>, ...props.control.codeList.map(
                                            (item, index) => <option key={`${props.path}-opt${index}`}
                                                                     value={item.code}>{item.text}</option>)]}
                                    </Form.Control>

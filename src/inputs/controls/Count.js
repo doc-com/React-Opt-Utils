@@ -7,13 +7,13 @@ import _ from "lodash";
 
 const validateCount = (value, range, occurrences, translate) => {
 
-    let error;
-    if (range.lower_included && value < range.lower) {
+    let error = "";
+    if (range && range.lower_included && value < range.lower) {
         //TODO Replace for translatable key in Medical Heroes
         error = translate('Value too low');
     }
 
-    if (!error && (range.upper_included && value > range.upper)) {
+    if (!error && (range && range.upper_included && value > range.upper)) {
         //TODO Replace for translatable key in Medical Heroes
         error = translate('Value too big');
     }
@@ -32,7 +32,7 @@ const Count = (props) => (
                }}
                render={
                    ({field, form}) => {
-                       console.log(props.control)
+                       if(props.path)props.setInitialValues(props.path);
                        let range = props.control.range ? props.control.range : '';
                        return (
                            <Form.Group as={Col} controlId={props.path}>
@@ -47,7 +47,8 @@ const Count = (props) => (
                                            if (e.target.value) {
                                                form.setFieldValue(props.path, {
                                                    path: props.control.contributionPath,
-                                                   count: e.target.value
+                                                   count: e.target.value,
+                                                   type: props.control.type
                                                });
                                            } else {
                                                form.handleChange(e)
@@ -58,7 +59,7 @@ const Count = (props) => (
                                        max={(range && range.upper_included) ? range.upper : 10000}
                                        placeholder={props.control.label}
                                        aria-describedby="inputGroupAppend"
-                                       isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}
+                                       isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}
                                    />
                                    <InputGroup.Append>
                                        <OverlayTrigger
@@ -70,6 +71,7 @@ const Count = (props) => (
                                        </OverlayTrigger>
                                    </InputGroup.Append>
                                    <Form.Control.Feedback type="invalid">
+                                       {_.get(form.errors, props.path)}
                                    </Form.Control.Feedback>
                                </InputGroup>
                            </Form.Group>

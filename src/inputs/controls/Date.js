@@ -3,31 +3,15 @@ import PropTypes from "prop-types";
 import {FastField} from "formik";
 import {Form, InputGroup, Col, OverlayTrigger, Tooltip, Button} from "react-bootstrap";
 import {validateMandatory} from "./util";
-import {DatePicker} from "@material-ui/pickers";
+import {DatePicker, DateTimePicker, KeyboardDatePicker} from "@material-ui/pickers";
+import moment from "moment";
+import _ from "lodash";
 
 const validateDate = (value, datePattern, range, occurrences, translate) => {
-
-    let error;
-    if (datePattern) {
-
-    }
-
-    if (range) {
-        if (range.lower_included && value < range.lower) {
-            //TODO Replace for translatable key in Medical Heroes
-            error = translate('Value too low');
-        }
-
-        if (!error && (range.upper_included && value > range.upper)) {
-            //TODO Replace for translatable key in Medical Heroes
-            error = translate('Value too big');
-        }
-    }
-
+    let error = "";
     if (!error) {
         error = validateMandatory(value, occurrences, translate);
     }
-
     return error;
 };
 
@@ -38,25 +22,47 @@ const Date = (props) => (
                }}
                render={
                    ({field, form}) => {
-                       console.log(props.control)
+                       const currentError = _.get(form.errors, props.path);
+                       if (props.path) props.setInitialValues(props.path);
                        let range = props.control.range ? props.control.range : '';
                        return (
                            <Form.Group as={Col} controlId={props.path}>
                                <InputGroup>
-                                   <DatePicker className={"col"} value={field.value ? field.value.date : null} onChange={(date) => {
-                                       console.log(date)
-                                   }}/>
-                                   <InputGroup.Append className={"ml-3"}>
-                                       <OverlayTrigger
-                                           placement={'bottom'}
-                                           overlay={
-                                               <Tooltip id={`tooltip-bottom`}>{props.control.description}</Tooltip>
-                                           }>
-                                           <Button variant="secondary">?</Button>
-                                       </OverlayTrigger>
-                                   </InputGroup.Append>
-                                   <Form.Control.Feedback type="invalid">
-                                   </Form.Control.Feedback>
+                                   <KeyboardDatePicker
+                                       className={"mt-1"}
+                                       clearable
+                                       name={field.name}
+                                       value={field.value ? field.value.date : null}
+                                       format="DD/MM/YYYY"
+                                       placeholder={props.translate('Enter date')}
+                                       views={["year", "month", "date"]}
+                                       helperText={currentError}
+                                       error={Boolean(_.get(form.errors, props.path) && _.get(form.touched, props.path))}
+                                       onError={error => {
+                                           // handle as a side effect
+                                           if (error !== currentError) {
+                                               let err = _.get(form.touched, props.path) ? validateDate(field.value, props.control.datePattern, props.control.range, props.control.occurrences, props.translate) : '';
+                                               form.setFieldError(field.name, err ? err : error);
+                                           }
+                                       }}
+                                       minDate={(props.control.range && props.control.range.lower_included) ? moment(props.control.range.lower) : moment("1900-01-01")}
+                                       maxDate={(props.control.range && props.control.range.upper_included) ? moment(props.control.range.upper) : moment().add(1, 'y')}
+                                       onChange={date => form.setFieldValue(field.name, {
+                                           path: props.control.contributionPath,
+                                           date,
+                                           type: props.control.type
+                                       }, true)}
+                                   />
+                                   <OverlayTrigger
+                                       placement={'bottom'}
+                                       overlay={
+                                           <Tooltip
+                                               id={`tooltip-bottom`}>{props.control.description}</Tooltip>
+                                       }>
+                                       <Button
+                                           className={`ml-2 ${Boolean(_.get(form.errors, props.path) && _.get(form.touched, props.path)) ? "mb-3" : ''}`}
+                                           variant="secondary">?</Button>
+                                   </OverlayTrigger>
                                </InputGroup>
                            </Form.Group>
                        );

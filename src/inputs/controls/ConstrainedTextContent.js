@@ -6,8 +6,8 @@ import {validateMandatory} from "./util";
 import _ from "lodash";
 
 const validateConstrainedText = (value, occurrences, translate) => {
-    let error;
-    error = validateMandatory(value, occurrences, translate);
+    let error = "";
+    //error = validateMandatory(value, occurrences, translate);
     return error;
 };
 
@@ -19,6 +19,8 @@ const ConstrainedTextContent = (props) => {
                    }}
                    render={
                        ({field, form}) => {
+                           if(props.path)props.setInitialValues(props.path);
+
                            //TODO Replace for translatable key in Medical Heroes
                            return (
                                <Form.Group as={Col} controlId={props.path}>
@@ -38,7 +40,8 @@ const ConstrainedTextContent = (props) => {
                                                    form.setFieldValue(props.path, {
                                                        path: props.control.contributionPath,
                                                        code: selected.code,
-                                                       textValue: selected.text
+                                                       textValue: selected.text,
+                                                       type: props.control.type
                                                    })
                                                } else {
                                                    form.handleChange(selected)
@@ -46,7 +49,7 @@ const ConstrainedTextContent = (props) => {
                                            }}
                                            options={props.queryResults}
                                            selected={field.value ? field.value.selected : []}
-                                           isInvalid={!!_.get(form.errors, props.path) && _.get(form.touched, props.path)}
+                                           isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}
                                        />
                                        <InputGroup.Append>
                                            <OverlayTrigger

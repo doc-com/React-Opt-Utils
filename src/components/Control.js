@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 
 const Control = (props) => {
     //console.log(props.form);
+    props.setInitialValues();
     return (
         <Container>
             <Row className={"align-items-center"}>
@@ -21,7 +22,9 @@ const Control = (props) => {
                     : ''}
             </Row>
             <Row>
-                <OptInput path={props.path} isDynamic={props.isDynamic} control={props.control} translate={props.translate}/>
+                <OptInput setInitialValues={props.setInitialValues} path={props.path} isDynamic={props.isDynamic}
+                          control={props.control}
+                          translate={props.translate}/>
             </Row>
         </Container>
     )
@@ -33,6 +36,7 @@ Control.propTypes = {
     dynamicId: PropTypes.string,
     dynamicIndex: PropTypes.number,
     deleteContentItem: PropTypes.func,
+    setInitialValues: PropTypes.func.isRequired,
     control: PropTypes.shape({
         id: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
