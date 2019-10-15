@@ -10,7 +10,11 @@ phases:
       - npm i
   build:
     commands:
-      - echo Build started on `date`      
+      - echo Build started on `date`
+      - touch .env
+      - echo REACT_APP_OPT_META_HOST=\"$REACT_APP_OPT_META_HOST\" >> .env
+      - echo REACT_APP_TERMINOLOGY_HOST=\"$REACT_APP_TERMINOLOGY_HOST\" >> .env
+      - cat .env
       - npm run-script build
   post_build:
     commands:
