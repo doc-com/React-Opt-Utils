@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {FastField} from "formik";
 import {Form, InputGroup, Col, OverlayTrigger, Tooltip, Button} from "react-bootstrap";
 import {validateMandatory} from "./util";
-import {DatePicker, DateTimePicker, KeyboardDatePicker} from "@material-ui/pickers";
+import {KeyboardDatePicker} from "@material-ui/pickers";
 import moment from "moment";
 import _ from "lodash";
 
@@ -24,7 +24,6 @@ const Date = (props) => (
                    ({field, form}) => {
                        const currentError = _.get(form.errors, props.path);
                        if (props.path) props.setInitialValues(props.path);
-                       let range = props.control.range ? props.control.range : '';
                        return (
                            <Form.Group as={Col} controlId={props.path}>
                                <InputGroup>
