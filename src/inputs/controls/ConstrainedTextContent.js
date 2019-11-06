@@ -12,6 +12,7 @@ const validateConstrainedText = (value, occurrences, translate) => {
 };
 
 const ConstrainedTextContent = (props) => {
+    console.log(props.options);
     return (
         <FastField name={props.path}
                    validate={(value) => {
@@ -31,24 +32,20 @@ const ConstrainedTextContent = (props) => {
                                            onSearch={(query) => {
                                                props.searchTerminologies(query)
                                            }}
-                                           promptText={props.translate('Type to search...')}
-                                           searchText={props.translate('Searching...')}
-                                           minLength={4}
-                                           maxResults={50}
                                            onChange={(selected) => {
                                                if (selected) {
                                                    form.setFieldValue(props.path, {
                                                        path: props.control.contributionPath,
                                                        code: selected.code,
                                                        textValue: selected.text,
-                                                       type: props.control.type
+                                                       type: props.control.type,
+                                                       rmType: props.control.rmTypeName
                                                    })
                                                } else {
                                                    form.handleChange(selected)
                                                }
                                            }}
-                                           options={props.queryResults}
-                                           selected={field.value ? field.value.selected : []}
+                                           options={props.options}
                                            isInvalid={_.get(form.errors, props.path) && _.get(form.touched, props.path)}
                                        />
                                        <InputGroup.Append>

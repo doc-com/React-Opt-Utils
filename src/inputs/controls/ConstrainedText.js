@@ -20,7 +20,9 @@ class ConstrainedText extends Component {
                 setInitialValues={this.props.setInitialValues}
                 searchTerminologies={(search) => {
                     this.setState({loading: true}, () => {
-                        this.fetchTerminologies(search, this.props.control.referenceSetUri, (results) => {
+                        console.log(this.props.control)
+                        this.fetchTerminologies(search, this.props.control.referenceSetUri, (err, results) => {
+                            console.log(results)
                             this.setState({loading: false, queryResults: results})
                         })
                     });
@@ -36,16 +38,22 @@ class ConstrainedText extends Component {
     }
 
     fetchTerminologies(search, referenceSetUri, callback) {
-        let formattedExp = referenceSetUri.referenceSet.replace(':', '=');
+        let formattedExp = decodeURI(referenceSetUri.referenceSet).replace(':', '=');
+        formattedExp = formattedExp.replace('%3A', '=').replace(/\s/g, "");
+        let url = `${process.env.REACT_APP_TERMINOLOGY_HOST}${formattedExp}&term=${search}`;
         let options = {
-            url: `${process.env.REACT_APP_TERMINOLOGY_HOST}${formattedExp}`,
+            url: url,
             method: 'GET',
             headers: {
                 'Accept-Language': 'en',
                 'Accept': 'application/json'
             }
         };
-        request(options, callback);
+        request(options, (err, response, body) => {
+            callback(err, JSON.parse(body).items.map((entry) => {
+                return {id: entry.conceptId, label: entry.pt.term}
+            }))
+        });
     }
 }
 

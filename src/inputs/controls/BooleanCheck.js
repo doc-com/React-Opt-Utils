@@ -33,7 +33,8 @@ const BooleanCheck = (props) => (
                                                form.setFieldValue(props.path, {
                                                    path: props.control.contributionPath,
                                                    value: e.target.value,
-                                                   type: props.control.type
+                                                   type: props.control.type,
+                                                   rmType: props.control.rmTypeName
                                                })
                                            }}
                                            value={true}
@@ -47,7 +48,9 @@ const BooleanCheck = (props) => (
                                            onChange={(e) => {
                                                form.setFieldValue(props.path, {
                                                    path: props.control.contributionPath,
-                                                   value: e.target.value
+                                                   value: e.target.value,
+                                                   type: props.control.type,
+                                                   rmType: props.control.rmTypeName
                                                })
                                            }}
                                            value={false}
